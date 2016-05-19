@@ -10,7 +10,7 @@ args = parser.parse_args()
 
 fileIn = args.input_file
 fileOut1 = args.gene_node_file
-fileOut = args.db_nod_file
+fileOut = args.db_node_file
 values = set()
 counter = args.snap_id_counter_start
 db_id = args.db_id

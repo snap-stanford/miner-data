@@ -36,7 +36,7 @@ with open(args.input_file, 'r') as inF:
 					continue
 				if inTerm:
 					if line[0:3] == 'id:':
-						node_id = line.split(':')[1].strip()
+						node_id = line[4:].strip()
 						if node_id not in node_ids:
 							node_ids[node_id] = node_counter
 							node_counter += 1
