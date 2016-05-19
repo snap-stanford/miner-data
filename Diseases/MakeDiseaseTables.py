@@ -635,7 +635,6 @@ for (chem_id, disease_id) in chem_disease_list:
             disease_snap_id = mesh_to_snap_dict[disease_id][0]
         else:
             disease_snap_id = omim_to_snap_dict[disease_id][0]
-        chem_snap_id = go_to_snap_dict[go_id][0]
     except IndexError:
         continue
     curr_edge_id = 'SNAPDC' + str(max_snap_eids['DC'])
