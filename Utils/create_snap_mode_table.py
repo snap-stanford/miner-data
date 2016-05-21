@@ -18,7 +18,7 @@ args = parser.parse_args()
 inFNm = args.input_file
 db_id = args.db_id
 mode_name = args.mode_name
-dataset = args.dataset
+dataset = args.dataset_name
 outFNm = args.full_mode_file
 if outFNm is None:
   outFNm = os.path.join(args.output_dir, utils.get_full_mode_file_name(mode_name))
@@ -45,6 +45,6 @@ with open(inFNm, 'r') as inF:
         if node_id in seen:
           continue
         outF.write('%d\t%d\n' % (counter, db_id))
-        dbF.write('%d\t%s\n' % (counter, string_id))
-        seen.add(string_id)
+        dbF.write('%d\t%s\n' % (counter, node_id))
+        seen.add(node_id)
         counter += 1
