@@ -34,6 +34,7 @@ node_index = args.node_index
 
 
 seen = set()
+print 'Starting at snap id: %d' % counter
 with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as outF:
     with open(dbFNm, 'w') as dbF:
@@ -52,3 +53,6 @@ with open(inFNm, 'r') as inF:
         dbF.write('%d\t%s\n' % (counter, node_id))
         seen.add(node_id)
         counter += 1
+
+print 'Ending at snap id: %d' % counter
+

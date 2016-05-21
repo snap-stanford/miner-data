@@ -55,6 +55,7 @@ else:
 counter = args.snap_id_counter_start
 if counter == -1:
   counter = utils.get_file_len(outFNm)
+print 'Starting at snap id: %d' % counter
 with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as fullF:
     with open(outFNm2, 'w') as dbF:
@@ -69,3 +70,4 @@ with open(inFNm, 'r') as inF:
         fullF.write('%d\t%d\t%d\t%d\n' % (counter, db_id, src_mapping[id1], dst_mapping[id2]))
         dbF.write('%d\t%d\t%d\n' % (counter, src_db_id, dst_db_id))
         counter += 1
+print 'Ending at snap id: %d' % counter
