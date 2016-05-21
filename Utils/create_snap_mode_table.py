@@ -92,7 +92,7 @@ with open(inFNm, 'r') as inF:
       dbF.write('# Mapping for mode %s from dataset %s\n' % (mode_name, dataset))
       dbF.write('# snap_id\t%s specific id\n' % dataset)
       for line in inF:
-        if line[0] == '#': # skip comments
+        if line[0] == '#' or line[0] == '\n': # skip comments
           continue
         node_id = line.strip().split('\t')[node_index]
         if node_id in seen:

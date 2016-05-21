@@ -94,7 +94,7 @@ with open(outFNm, 'a') as equivF:
   if inFNm is not None:
     with open(inFNm, 'r') as inF:
       for line in inF:
-        if line[0] == '#':
+        if line[0] == '#' or line[0] == '\n':
           continue
         vals =  line.strip().split('\t')
         id1 = vals[ds1Idx]

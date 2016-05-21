@@ -110,7 +110,7 @@ with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as fullF:
     with open(outFNm2, 'w') as dbF:
       for line in inF:
-        if line[0] == '#':
+        if line[0] == '#' or line[0] == '\n':
           continue
         vals =  line.strip().split('\t')
         id1 = vals[srcIdx]

@@ -66,7 +66,7 @@ if __name__ == '__main__':
             for i, line in enumerate(inF):
                 if args.verbose and i%1000000 == 0:
                     print 'Finished processing line %d in the original input file' % i
-                if line[0] == '#' or line[0] == '\n' or (i==0 and args.has_title):
+                if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
                 vals = line.strip().split(args.divider)
                 src_nodes = [vals[args.src_node_col]]
