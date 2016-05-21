@@ -31,7 +31,8 @@ Optional arguments:
 --db_edge_file:          Name of output file tsv for a specific dataset; contains a list of <snap id>\t<dataset_specific_entity_id>
                          Defaults to output_dir/miner-<src_mode_name>-<dst_mode_name>-<dataset_id>-<dataset>-<date>.tsv
 --snap_id_counter_start  Start assigning snap ids from this integer value; this number MUST be greater
-                         than any id found in the full crossnet file.
+                         than any id found in the full crossnet file. If not specified, finds the max id in the
+                         full_crossnet_file.
 --skip_missing_ids       Flag; If any of the ids in the input tsv do not have snap ids (which are fetched from
                          the src and dst files), skip the line and continue parsing the data.
 
@@ -103,7 +104,7 @@ else:
 
 counter = args.snap_id_counter_start
 if counter == -1:
-  counter = utils.get_file_len(outFNm)
+  counter = utils.get_max_id(outFNm)
 print 'Starting at snap id: %d' % counter
 with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as fullF:

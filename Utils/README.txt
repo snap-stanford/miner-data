@@ -19,17 +19,21 @@ and crossnets. This directory currently consists of three files:
 
 
 It also contains scripts to pull out unique node ids and create an edge list (i.e. remove 
-extraneous fields):
+extraneous fields, but can also handle input lines that model many-to-many, many-to-1, and
+1-to-many relationships):
 
 4. extract_unique_node_ids.py
 	Description: Extracts node ids from a tsv and writes all the unique ids to a tsv.
-	Input:    - dataset, in tsv form
+	Input:    - dataset, in tsv form ***
 	Output:   - tsv, where each line contains a single node id
 5. extract_edge_list.py 
 	Description: Extracts src and dst node ids from a file, creates a tsv edge list. Can process
 	             1-to-1, 1-to-many, many-to-1, and many-to-many relationships in input file.
-	Input:    - dataset, in tsv form
+	Input:    - dataset, in tsv form ***
 	Output:   - tsv, where each line contains the source node id and the destination node id.
+
+*** If file doesn't use tabs to separate the fields in a line, you can change the divider default
+    argument value in the script.
 
 
 Below are details on the arguments and usage for each script (taken from the header of each file):
@@ -61,7 +65,8 @@ Optional arguments:
 --db_node_file:          Name of output file tsv for a specific dataset; contains a list of <snap id>\t<dataset_specific_entity_id>
                          Defaults to output_dir/miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 --snap_id_counter_start  Start assigning snap ids from this integer value; this number MUST be greater
-                         than any id found in the full mode file.
+                         than any id found in the full mode file. If not specified, finds the max id in the
+                         full_mode_file.
 
 Example usage:
 Creating files for genes using two datasets, GeneOntology and HUGO:
@@ -111,7 +116,8 @@ Optional arguments:
 --db_edge_file:          Name of output file tsv for a specific dataset; contains a list of <snap id>\t<dataset_specific_entity_id>
                          Defaults to output_dir/miner-<src_mode_name>-<dst_mode_name>-<dataset_id>-<dataset>-<date>.tsv
 --snap_id_counter_start  Start assigning snap ids from this integer value; this number MUST be greater
-                         than any id found in the full crossnet file.
+                         than any id found in the full crossnet file. If not specified, finds the max id in the
+                         full_crossnet_file.
 --skip_missing_ids       Flag; If any of the ids in the input tsv do not have snap ids (which are fetched from
                          the src and dst files), skip the line and continue parsing the data.
 

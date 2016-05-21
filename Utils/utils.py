@@ -19,6 +19,26 @@ def get_file_len(input_file):
 		return sum(1 for line in open(input_file, 'r'))
 	return 0
 
+def get_max_id(input_file):
+	'''Returns the max snap id of the input_file; Returns 0 if the file does not exist.
+	Assumes file in format of snap mode or crossnet full table tsv file.
+
+	Input:
+	    input_file: path to the input file.
+	Output:
+	    max snap id in input file.
+	'''
+	max_id = 0
+	if os.path.isfile(input_file):
+		with open(input_file, 'r') as inF:
+			for line in inF:
+				if line[0]=='#':
+					continue
+				new_id = int(line.strip().split('\t')[0])
+				if new_id > max_id:
+					max_id = new_id
+	return max_id
+
 def get_current_date():
 	'''Returns the current date, formatted as YYYYMMDD
 

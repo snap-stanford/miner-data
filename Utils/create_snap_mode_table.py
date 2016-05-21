@@ -24,7 +24,8 @@ Optional arguments:
 --db_node_file:          Name of output file tsv for a specific dataset; contains a list of <snap id>\t<dataset_specific_entity_id>
                          Defaults to output_dir/miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 --snap_id_counter_start  Start assigning snap ids from this integer value; this number MUST be greater
-                         than any id found in the full mode file.
+                         than any id found in the full mode file. If not specified, finds the max id in the
+                         full_mode_file.
 
 Example usage:
 Creating files for genes using two datasets, GeneOntology and HUGO:
@@ -75,7 +76,7 @@ if dbFNm is None:
 
 counter = args.snap_id_counter_start
 if counter == -1:
-  counter = utils.get_file_len(outFNm)
+  counter = utils.get_max_id(outFNm)
 node_index = args.node_index
 
 
