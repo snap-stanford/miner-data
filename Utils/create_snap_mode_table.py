@@ -1,8 +1,53 @@
+'''
+file: create_snap_mode_table.py
+author: Sheila Ramaswamy(@sramas15)
+
+Script that creates snap tables for a given mode.
+
+Usage:
+python create_snap_mode_table.py <input_file_path> <mode_name> <dataset_name> <dataset_id>
+
+Positional Arguments:
+input_file_path:         Path to the input file; Input file should be a tsv.
+mode_name:               Name of the mode being created e.g. genes
+dataset_name:            Name of dataset being used to create the snap mode tables i.e. the 
+                         dataset the input file comes from. e.g. STRING
+dataset_id:              unique integer id for this dataset.
+
+
+Optional arguments:
+--node_index:            If there are multiple columns in the input tsv, the index of the column with the node id.
+                         Defaults to 0.
+--output_dir:            Directory to create output files. Defaults to the current working directory.
+--full_mode_file:        Name of output file tsv containing a list of <snap_id>\t<dataset_id>.
+                         Defaults to output_dir/miner-<mode_name>-<date>.tsv
+--db_node_file:          Name of output file tsv for a specific dataset; contains a list of <snap id>\t<dataset_specific_entity_id>
+                         Defaults to output_dir/miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
+--snap_id_counter_start  Start assigning snap ids from this integer value; this number MUST be greater
+                         than any id found in the full mode file.
+
+Example usage:
+Creating files for genes using two datasets, GeneOntology and HUGO:
+
+Input files: hugo.tsv and go.tsv
+
+Output directory: outputs/genes/
+
+Output files: miner-gene-20160520.tsv, miner-gene-0-GO-20160520.tsv, miner-gene-1-HUGO-20160520.tsv
+
+Workflow:
+
+python create_snap_mode_table.py go.tsv gene GO 0 --output_dir outputs/genes/
+python create_snap_mode_table.py hugo.tsv gene HUGO 1 --output_dir outputs/genes/
+'''
+
 import argparse
 import utils
 import os
 
-parser = argparse.ArgumentParser(description='Create snap node tables')
+
+# Create command line arguments
+parser = argparse.ArgumentParser(description='Create snap node tables; for more detailed description, please see file header.')
 parser.add_argument('input_file', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
 parser.add_argument('mode_name', type=str, help='mode name')
 parser.add_argument('dataset_name', type=str, help='name of dataset')
@@ -16,6 +61,7 @@ parser.add_argument('--snap_id_counter_start', type=int, help='where to start as
 args = parser.parse_args()
 
 
+# Process command line arguments, get default path names
 inFNm = args.input_file
 db_id = args.db_id
 mode_name = args.mode_name
@@ -33,6 +79,7 @@ if counter == -1:
 node_index = args.node_index
 
 
+# Read input file, create output files.
 seen = set()
 print 'Starting at snap id: %d' % counter
 with open(inFNm, 'r') as inF:
@@ -44,7 +91,7 @@ with open(inFNm, 'r') as inF:
       dbF.write('# Mapping for mode %s from dataset %s\n' % (mode_name, dataset))
       dbF.write('# snap_id\t%s specific id\n' % dataset)
       for line in inF:
-        if line[0] == '#':
+        if line[0] == '#': # skip comments
           continue
         node_id = line.strip().split('\t')[node_index]
         if node_id in seen:
