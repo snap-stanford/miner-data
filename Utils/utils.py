@@ -40,6 +40,16 @@ def get_full_mode_file_name(mode_name):
 	'''
 	return 'miner-%s-%s.tsv' % (mode_name, get_current_date())
 
+def get_equiv_mode_file_name(mode_name):
+	'''Returns the formatted file name that should contain the equivalence table of snap ids for the mode.
+
+	Input:
+	    mode_name: the name of the mode
+	Output:
+	    the formatted file name.
+	'''
+	return 'miner-%s-equiv-%s.tsv' % (mode_name, get_current_date())
+
 def get_mode_file_name(mode_name, db_id, dataset):
 	'''Returns the formatted file name that should contain the snap id to dataset
 	specific id mapping.
