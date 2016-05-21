@@ -94,9 +94,9 @@ def parse_dataset_name_from_name(file_name):
 	Input:
 	    file_name: mode file name, as returned by get_mode_file_name.
 	Output:
-	     the integer dataset name.
+	     the string dataset name.
 	'''
-	return int(file_name.split('-')[3])
+	return file_name.split('-')[3]
 
 def parse_mode_name_from_name(file_name):
 	'''Extracts the mode name from the formatted mode file name.
@@ -104,9 +104,9 @@ def parse_mode_name_from_name(file_name):
 	Input:
 	    file_name: mode file name, as returned by get_mode_file_name.
 	Output:
-	     the integer dataset mode name.
+	     the string dataset mode name.
 	'''
-	return int(file_name.split('-')[1])
+	return file_name.split('-')[1]
 
 def read_mode_file(map_file):
 	'''Reads the mapping between dataset specific ids to snap ids into a dictionary.
@@ -119,6 +119,8 @@ def read_mode_file(map_file):
 	mapping = {}
 	with open(map_file, 'r') as inF:
 		for line in inF:
+			if len(line) == 0 or line[0] == '#':
+				continue
 			(snap_id, dataset_id) = line.strip().split('\t')
 			mapping[dataset_id] = int(snap_id)
 	return mapping
