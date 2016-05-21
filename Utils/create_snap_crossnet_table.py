@@ -16,6 +16,7 @@ parser.add_argument('--full_crossnet_file', help='output file name; outputs a li
   + 'note that this file is appended to; OVERRIDES output_dir argument', default=None)
 parser.add_argument('--db_edge_file', help='output file name; output contains mapping of snap ids to dataset ids; OVERRIDES output dir argument', default=None)
 parser.add_argument('--skip_missing_ids', action=store_true, help='don\'t throw an error if ids in input_file not found in src or dst file.')
+parser.add_argument('--snap_id_counter_start', type=int, help='where to start assigning snap ids', default=-1)
 args = parser.parse_args()
 
 
@@ -37,12 +38,12 @@ outFNm = args.full_crossnet_file
 if outFNm is None:
   mode_name1 = utils.parse_mode_name_from_name(srcFile)
   mode_name2 = utils.parse_mode_name_from_name(dstFile)
-  os.path.join(args.output_dir, utils.get_full_cross_file_name(mode_name1, mode_name2))
+  outFNm = os.path.join(args.output_dir, utils.get_full_cross_file_name(mode_name1, mode_name2))
 outFNm2 = args.db_edge_file
 if outFNm2 is None:
   mode_name1 = utils.parse_mode_name_from_name(srcFile)
   mode_name2 = utils.parse_mode_name_from_name(dstFile)
-  os.path.join(args.output_dir, utils.get_cross_file_name(mode_name1, mode_name2, db_id, dataset))
+  outFNm2 = os.path.join(args.output_dir, utils.get_cross_file_name(mode_name1, mode_name2, db_id, dataset))
 
 
 src_mapping = utils.read_mode_file(srcFile)
@@ -50,7 +51,10 @@ if os.path.samefile(srcFile, dstFile):
   dst_mapping = src_mapping
 else:
   dst_mapping = utils.read_mode_file(dstFile)
+
 counter = args.snap_id_counter_start
+if counter == -1:
+  counter = utils.get_file_len(outFNm)
 with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as fullF:
     with open(outFNm2, 'w') as dbF:

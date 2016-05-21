@@ -12,6 +12,7 @@ parser.add_argument('--output_dir', help='directory to output files; either this
 parser.add_argument('--full_mode_file', help='output file name; outputs a list of snap ids and the db ids (db the snap id was derived from);' \
   + 'note that this file is appended to; OVERRIDES output_dir argument', default=None)
 parser.add_argument('--db_node_file', help='output file name; output contains mapping of snap ids to db protein ids; OVERRIDES output dir argument', default=None)
+parser.add_argument('--snap_id_counter_start', type=int, help='where to start assigning snap ids', default=-1)
 args = parser.parse_args()
 
 
@@ -25,7 +26,10 @@ if outFNm is None:
 dbFNm = args.db_node_file
 if dbFNm is None:
   dbFNm = os.path.join(args.output_dir, utils.get_mode_file_name(mode_name, db_id, dataset))
-counter = utils.get_file_len(outFNm)
+
+counter = args.snap_id_counter_start
+if counter == -1:
+  counter = utils.get_file_len(outFNm)
 node_index = args.node_index
 
 
