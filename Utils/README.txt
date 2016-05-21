@@ -2,7 +2,7 @@ This directory creates generic scripts than can be used to create snap-formatted
 and crossnets. This directory currently consists of three files:
 
 1. create_snap_mode_table.py
-	Input:    original dataset, in tsv form
+	Input:    - original dataset, in tsv form
 	Output:   - Snap mode table tsv (snap_nid\tdataset_id)
 	          - dataset specific mode snap table tsv (snap_nid\tdataset_entity_id)
 2. create_snap_crossnet_table.py
@@ -17,14 +17,28 @@ and crossnets. This directory currently consists of three files:
 	          - (Optional) the dataset (in tsv form) specifying id equivalences
 	Output:   - Snap mode equivlance table (snap_nid\tsnap_nid)
 
+
+It also contains scripts to pull out unique node ids and create an edge list (i.e. remove 
+extraneous fields):
+
+4. extract_unique_node_ids.py
+	Description: Extracts node ids from a tsv and writes all the unique ids to a tsv.
+	Input:    - dataset, in tsv form
+	Output:   - tsv, where each line contains a single node id
+5. extract_edge_list.py 
+	Description: Extracts src and dst node ids from a file, creates a tsv edge list. Can process
+	             1-to-1, 1-to-many, many-to-1, and many-to-many relationships in input file.
+	Input:    - dataset, in tsv form
+	Output:   - tsv, where each line contains the source node id and the destination node id.
+
+
 Below are details on the arguments and usage for each script (taken from the header of each file):
-
-
 
 
 ########################################
 ###     create_snap_mode_table.py    ###
 ########################################
+
 Script that creates snap tables for a given mode.
 
 Usage:
@@ -114,6 +128,7 @@ Workflow:
 
 python create_snap_crossnet_table.py go.tsv miner-gene-0-GO-20160520.tsv miner-function-0-GO-20160520.tsv GO 0 --output_dir outputs/genes-functions/
 
+
 ##############################################
 ###     create_snap_mode_equiv_table.py    ###
 ##############################################
@@ -156,3 +171,77 @@ Output files: miner-gene-equiv-20160520.tsv
 Workflow:
 
 python create_snap_mode_equiv_table.py miner-gene-0-GO-20160520.tsv miner-gene-1-HUGO-20160520.tsv --mapping_file_path hugo.tsv --output_dir outputs/genes/
+
+
+#########################################
+###     extract_unique_node_ids.py    ###
+#########################################
+
+Script that creates a tsv containing all the unique node ids from a given input file.
+
+Usage:
+python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <column_1> <column_2> ... <column_N>
+
+Positional Arguments:
+input_file_path:         Path to the input file; Input file should be a tsv.
+output_file_path:        Path to the output file; Output file will be a tsv.
+dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
+columns:                 Columns containing node ids. Can specify many.
+
+
+Optional arguments:
+--node_name:             String indicating how to refer to the node ids in the file scheme. Defaults to node_id.
+--has_title:             If provided, skips over the first line of the file.
+--verbose:               If provided, prints to the console for every million lines of the input file processed.
+
+Example usage:
+Extracting node ids from a STRING edgelist file, consisting of <src_node_id>\t<dst_node_id>
+
+Input files: STRING.tsv
+
+Output file: STRING-nodes.tsv
+
+Workflow:
+
+python extract_unique_node_ids.py STRING.tsv STRING-nodes.tsv STRING 0 1 --node_name ENSEMBL_peptide_id --verbose 
+
+
+###################################
+###     extract_edge_list.py    ###
+###################################
+
+Script that creates an edge list given the input file.
+
+Usage:
+python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <src_node_column> <dst_node_column>
+
+Positional Arguments:
+input_file_path:         Path to the input file; Input file should be a tsv.
+output_file_path:        Path to the output file; Output file will be a tsv.
+dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
+src_node_column:         Column containing source node(s)
+dst_node_column:         Column containing destination node(s)
+
+Optional arguments:
+--src_node_name:         String indicating how to refer to the src node ids in the file scheme. Defaults to node_id1.
+--dst_node_name:         String indicating how to refer to the dst node ids in the file scheme. Defaults to node_id2.
+--has_title:             If provided, skips over the first line of the file.
+--verbose:               If provided, prints to the console for every million lines of the input file processed.
+--src_node_sep:          If the column containing the src node actually contains a list of nodes, the character separater
+                         used to split the text into the different node ids. Relevant for many-to-one relationships.
+                         By default assumes only one node id specified.
+--dst_node_sep:          If the column containing the dst node actually contains a list of nodes, the character separater
+                         used to split the text into the different node ids. Relevant for one-to-many relationships.
+                         By default assumes only one node id specified.
+
+Example usage:
+Extracting edge list from a STRING protein-protein interactions file, which contains many other fields.
+
+Input files: STRING.tsv; assume protein 1 at index 1 and protein 2 at index 5.
+
+Output file: STRING-edges.tsv
+
+Workflow:
+
+python extract_edge_list.py STRING.tsv STRING-edges.tsv STRING 1 5 --src_node_name protein_1 --dst_node_name protein_2
+
