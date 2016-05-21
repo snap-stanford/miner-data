@@ -35,7 +35,7 @@ def parse_mode_name_from_name(file_name):
 def read_mode_file(map_file):
 	mapping = {}
 	with open(map_file, 'r') as inF:
-  		for line in inF:
-    		(snap_id, dataset_id) = line.strip().split('\t')
-    		mapping[dataset_id] = int(snap_id)
-    return mapping
+		for line in inF:
+			(snap_id, dataset_id) = line.strip().split('\t')
+			mapping[dataset_id] = int(snap_id)
+	return mapping
