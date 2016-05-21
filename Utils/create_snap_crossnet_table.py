@@ -65,7 +65,7 @@ parser.add_argument('--output_dir', help='directory to output files; either this
 parser.add_argument('--full_crossnet_file', help='output file name; outputs a list of snap ids, the db ids (db the snap id was derived from), and source and destination snap node ids;' \
   + 'note that this file is appended to; OVERRIDES output_dir argument', default=None)
 parser.add_argument('--db_edge_file', help='output file name; output contains mapping of snap ids to dataset ids; OVERRIDES output dir argument', default=None)
-parser.add_argument('--skip_missing_ids', action=store_true, help='don\'t throw an error if ids in input_file not found in src or dst file.')
+parser.add_argument('--skip_missing_ids', action='store_true', help='don\'t throw an error if ids in input_file not found in src or dst file.')
 parser.add_argument('--snap_id_counter_start', type=int, help='where to start assigning snap ids', default=-1)
 args = parser.parse_args()
 
