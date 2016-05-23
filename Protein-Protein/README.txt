@@ -7,7 +7,7 @@ Note that all the relevant tables can be generated using scripts found in the Ut
 ***** IMPORTANT: STRING v10 contains 1,847,117,370 edges and therefore takes a long time to process.
       when adding interactions from another dataset (to the same miner-protein-protein-20160521.tsv 
       file), please use the snap_id_counter_start argument to set the starting snap id to 
-      1,847,117,370; otherwise, we must read through the entire file to get a starting id.
+      1,847,117,370; otherwise, the entire file is read to get a starting id.
 
 How to create crossnet tables from the STRING database (assumes mode tables not already created):
 

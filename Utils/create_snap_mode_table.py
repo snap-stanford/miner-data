@@ -8,7 +8,7 @@ Usage:
 python create_snap_mode_table.py <input_file_path> <mode_name> <dataset_name> <dataset_id>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
+input_file:              Path to the input file; Input file should be a tsv.
 mode_name:               Name of the mode being created e.g. genes
 dataset_name:            Name of dataset being used to create the snap mode tables i.e. the 
                          dataset the input file comes from. e.g. STRING
@@ -94,7 +94,7 @@ with open(inFNm, 'r') as inF:
       for line in inF:
         if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
           continue
-        node_id = line.strip().split('\t')[node_index]
+        node_id = split_then_strip(line, '\t')[node_index]
         if node_id in seen:
           continue
         outF.write('%d\t%d\n' % (counter, db_id))

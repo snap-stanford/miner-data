@@ -49,7 +49,7 @@ Usage:
 python create_snap_mode_table.py <input_file_path> <mode_name> <dataset_name> <dataset_id>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
+input_file:              Path to the input file; Input file should be a tsv.
 mode_name:               Name of the mode being created e.g. genes
 dataset_name:            Name of dataset being used to create the snap mode tables i.e. the 
                          dataset the input file comes from. e.g. STRING
@@ -93,11 +93,11 @@ Usage:
 python create_snap_crossnet_table.py <input_file_path> <src_file_path> <dst_file_path> <dataset_name> <dataset_id>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-src_file_path:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+input_file               Path to the input file; Input file should be a tsv.
+src_file                 Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the source mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
-dst_file_path:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dst_file                 Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the destination mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 dataset_name:            Name of dataset being used to create the snap crossnet tables i.e. the 
@@ -145,16 +145,16 @@ Usage:
 python create_snap_mode_equiv_table.py <dataset1_file_path> <dataset2_file_path>
 
 Positional Arguments:
-dataset1_file_path:      Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dataset1_file            Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the source mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
-dataset2_file_path:      Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dataset2_file            Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the destination mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 
 
 Optional arguments:
---mapping_file_path:     Path to a tsv file containing the mapping between the two datasets.
+--mapping_file           Path to a tsv file containing the mapping between the two datasets.
 --ds1_node_index:        If there are multiple columns in the input tsv, the index of the column with the dataset1 entity id.
                          Defaults to 0.
 --ds2_node_index:        If there are multiple columns in the input tsv, the index of the column with the dataset2 entity id.
@@ -189,8 +189,8 @@ Usage:
 python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <column_1> <column_2> ... <column_N>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-output_file_path:        Path to the output file; Output file will be a tsv.
+input_file               Path to the input file; Input file should be a tsv.
+output_file              Path to the output file; Output file will be a tsv.
 dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
 columns:                 Columns containing node ids. Can specify many.
 
@@ -222,8 +222,8 @@ Usage:
 python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <src_node_column> <dst_node_column>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-output_file_path:        Path to the output file; Output file will be a tsv.
+input_file               Path to the input file; Input file should be a tsv.
+output_file              Path to the output file; Output file will be a tsv.
 dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
 src_node_column:         Column containing source node(s)
 dst_node_column:         Column containing destination node(s)

@@ -8,8 +8,8 @@ Usage:
 python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <column_1> <column_2> ... <column_N>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-output_file_path:        Path to the output file; Output file will be a tsv.
+input_file:              Path to the input file; Input file should be a tsv.
+output_file:             Path to the output file; Output file will be a tsv.
 dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
 columns:                 Columns containing node ids. Can specify many.
 
@@ -59,7 +59,7 @@ if __name__ == '__main__':
                     print 'Finished processing line %d in the original input file' % i
                 if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
-                vals = line.strip().split(args.divider)
+                vals = split_then_strip(line, args.divider)
                 for column in args.columns:
                     if vals[column] not in unique_ids:
                         unique_ids.add(vals[column])

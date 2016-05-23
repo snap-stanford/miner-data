@@ -8,16 +8,16 @@ Usage:
 python create_snap_mode_equiv_table.py <dataset1_file_path> <dataset2_file_path>
 
 Positional Arguments:
-dataset1_file_path:      Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dataset1_file:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the source mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
-dataset2_file_path:      Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dataset2_file:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the destination mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 
 
 Optional arguments:
---mapping_file_path:     Path to a tsv file containing the mapping between the two datasets.
+--mapping_file:          Path to a tsv file containing the mapping between the two datasets.
 --ds1_node_index:        If there are multiple columns in the input tsv, the index of the column with the dataset1 entity id.
                          Defaults to 0.
 --ds2_node_index:        If there are multiple columns in the input tsv, the index of the column with the dataset2 entity id.
@@ -96,7 +96,7 @@ with open(outFNm, 'a') as equivF:
       for line in inF:
         if line[0] == '#' or line[0] == '\n':
           continue
-        vals =  line.strip().split('\t')
+        vals =  split_then_strip(line, '\t')
         id1 = vals[ds1Idx]
         id2 = vals[ds2Idx]
         if args.skip_missing_ids and (id1 not in ds1_mapping or id2 not in ds2_mapping):

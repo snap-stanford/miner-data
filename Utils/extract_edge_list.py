@@ -9,8 +9,8 @@ Usage:
 python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <src_node_column> <dst_node_column>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-output_file_path:        Path to the output file; Output file will be a tsv.
+input_file:              Path to the input file; Input file should be a tsv.
+output_file:             Path to the output file; Output file will be a tsv.
 dataset_name:            Name of dataset nodes are being extracted from e.g. STRING
 src_node_column:         Column containing source node(s)
 dst_node_column:         Column containing destination node(s)
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                     print 'Finished processing line %d in the original input file' % i
                 if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
-                vals = line.strip().split(args.divider)
+                vals = split_then_strip(line, args.divider)
                 src_nodes = [vals[args.src_node_col]]
                 dst_nodes = [vals[args.dst_node_col]]
                 if args.src_node_sep is not None:

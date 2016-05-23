@@ -27,4 +27,4 @@ python ../Utils/create_snap_mode_table.py /path/to/input/hgnc_complete_set.txt g
 # Create mode equivalence table
 python../Utils/create_snap_mode_equiv_table.py /path/to/output/miner-gene-0-GO-20160521.tsv /path/to/output/miner-gene-1-HUGO_Uniprot-20160521.tsv --output_dir /path/to/output/
 
-python../Utils/create_snap_mode_equiv_table.py /path/to/output/miner-gene-2-HUGO_ENSEMBL-20160521.tsv /path/to/output/miner-gene-1-HUGO_Uniprot-20160521.tsv --output_dir /path/to/output/ --mapping_file_path /path/to/input/hgnc_complete_set.txt --ds1_node_index 19 --ds2_node_index 25
+python../Utils/create_snap_mode_equiv_table.py /path/to/output/miner-gene-2-HUGO_ENSEMBL-20160521.tsv /path/to/output/miner-gene-1-HUGO_Uniprot-20160521.tsv --output_dir /path/to/output/ --mapping_file /path/to/input/hgnc_complete_set.txt --ds1_node_index 19 --ds2_node_index 25

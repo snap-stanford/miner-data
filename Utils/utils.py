@@ -7,6 +7,19 @@ File containing util functions useful for other scripts.
 import os
 from datetime import datetime
 
+def split_then_strip(string, split_char):
+	'''Splits the string using the given character and removes whitespace from all
+	resulting substrings.
+
+	Input:
+		string: string being split
+		split_char: character (or multiple characters) used to split string
+	Output:
+		a list, consisting of the stripped substrings.
+	'''
+	return [s.strip() for s in string.split(split_char)]
+
+
 def get_file_len(input_file):
 	'''Returns the length of the input_file; Returns 0 if the file does not exist.
 

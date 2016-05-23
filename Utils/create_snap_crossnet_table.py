@@ -8,11 +8,11 @@ Usage:
 python create_snap_crossnet_table.py <input_file_path> <src_file_path> <dst_file_path> <dataset_name> <dataset_id>
 
 Positional Arguments:
-input_file_path:         Path to the input file; Input file should be a tsv.
-src_file_path:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+input_file:              Path to the input file; Input file should be a tsv.
+src_file:                Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the source mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
-dst_file_path:           Path to a dataset specific file, as outputted by create_snap_mode_table.py,
+dst_file:                Path to a dataset specific file, as outputted by create_snap_mode_table.py,
                          corresponding to the destination mode. File name MUST MATCH FORMAT:
                          miner-<mode_name>-<dataset_id>-<dataset>-<date>.tsv
 dataset_name:            Name of dataset being used to create the snap crossnet tables i.e. the 
@@ -112,7 +112,7 @@ with open(inFNm, 'r') as inF:
       for line in inF:
         if line[0] == '#' or line[0] == '\n':
           continue
-        vals =  line.strip().split('\t')
+        vals =  split_then_strip(line, '\t')
         id1 = vals[srcIdx]
         id2 = vals[dstIdx]
         if args.skip_missing_ids and (id1 not in src_mapping or id2 not in dst_mapping):
