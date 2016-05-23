@@ -4,6 +4,9 @@ author: Sheila Ramaswamy(@sramas15)
 
 Connects to ENSEMBL server to fetch id mapping, using the biomart python library.
 
+Dependencies:
+biomart python library (https://pypi.python.org/pypi/biomart/0.9.0)
+
 Usage:
 python parse_obo_for_functions.py <output_file_path>
 
