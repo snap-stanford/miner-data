@@ -55,7 +55,7 @@ parser.add_argument('--ds2_node_index', type=int, help='column index that contai
 parser.add_argument('--output_dir', help='directory to output files; either this argument or full_crossnet_file and db_edge_file MUST be specified', default='.')
 parser.add_argument('--equiv_file', help='output file name; outputs a equivalence table of snap ids' \
   + 'note that this file is appended to; OVERRIDES output_dir argument', default=None)
-parser.add_argument('--skip_missing_ids', action=store_true, help='don\'t throw an error if ids in input_file not found in src or dst file.')
+parser.add_argument('--skip_missing_ids', action='store_true', help='don\'t throw an error if ids in input_file not found in src or dst file.')
 args = parser.parse_args()
 
 
@@ -76,11 +76,11 @@ if outFNm is None:
   assert mode_name1 == mode_name2
   outFNm = os.path.join(args.output_dir, utils.get_equiv_mode_file_name(mode_name1))
 
-ds1_mapping = utils.read_mode_file(ds1File)
-if os.path.samefile(srcFile, dstFile):
+ds1_mapping = utils.read_mode_file(dsFile1)
+if os.path.samefile(dsFile1, dsFile2):
   ds2_mapping = ds1_mapping
 else:
-  ds2_mapping = utils.read_mode_file(ds2File)
+  ds2_mapping = utils.read_mode_file(dsFile2)
 
 add_header = True
 if os.path.isfile(outFNm):
