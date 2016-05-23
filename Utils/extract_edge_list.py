@@ -68,7 +68,7 @@ if __name__ == '__main__':
                     print 'Finished processing line %d in the original input file' % i
                 if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
-                vals = split_then_strip(line, args.divider)
+                vals = utils.split_then_strip(line, args.divider)
                 src_nodes = [vals[args.src_node_col]]
                 dst_nodes = [vals[args.dst_node_col]]
                 if args.src_node_sep is not None:
@@ -76,5 +76,8 @@ if __name__ == '__main__':
                 if args.dst_node_sep is not None:
                     dst_nodes = dst_nodes[0].split(args.dst_node_sep)
                 for src_node in src_nodes:
+                    if src_node == '':
+                        continue
                     for dst_node in dst_nodes:
-                        outF.write('%s\t%s\n' % (src_node, dst_node))
+                        if dst_node != '':
+                            outF.write('%s\t%s\n' % (src_node, dst_node))

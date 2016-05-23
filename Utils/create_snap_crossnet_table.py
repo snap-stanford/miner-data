@@ -112,9 +112,11 @@ with open(inFNm, 'r') as inF:
       for line in inF:
         if line[0] == '#' or line[0] == '\n':
           continue
-        vals =  split_then_strip(line, '\t')
+        vals =  utils.split_then_strip(line, '\t')
         id1 = vals[srcIdx]
         id2 = vals[dstIdx]
+        if id1 == '' or id2 == '':
+          continue
         if args.skip_missing_ids and (id1 not in src_mapping or id2 not in dst_mapping):
           continue
         fullF.write('%d\t%d\t%d\t%d\n' % (counter, db_id, src_mapping[id1], dst_mapping[id2]))

@@ -96,9 +96,11 @@ with open(outFNm, 'a') as equivF:
       for line in inF:
         if line[0] == '#' or line[0] == '\n':
           continue
-        vals =  split_then_strip(line, '\t')
+        vals = utils.split_then_strip(line, '\t')
         id1 = vals[ds1Idx]
         id2 = vals[ds2Idx]
+        if id1 == '' or id2 == '':
+          continue
         if args.skip_missing_ids and (id1 not in ds1_mapping or id2 not in ds2_mapping):
           continue
         equivF.write('%d\t%d\n' % (ds1_mapping[id1], ds2_mapping[id2]))

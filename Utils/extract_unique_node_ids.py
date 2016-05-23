@@ -59,9 +59,9 @@ if __name__ == '__main__':
                     print 'Finished processing line %d in the original input file' % i
                 if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
-                vals = split_then_strip(line, args.divider)
+                vals = utils.split_then_strip(line, args.divider)
                 for column in args.columns:
-                    if vals[column] not in unique_ids:
+                    if vals[column] not in unique_ids and len(vals[column]) > 0:
                         unique_ids.add(vals[column])
                         new_line = '%s\n' % vals[column]
                         outF.write(new_line)

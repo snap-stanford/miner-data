@@ -94,8 +94,8 @@ with open(inFNm, 'r') as inF:
       for line in inF:
         if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
           continue
-        node_id = split_then_strip(line, '\t')[node_index]
-        if node_id in seen:
+        node_id = utils.split_then_strip(line, '\t')[node_index]
+        if node_id in seen or len(node_id) == 0:
           continue
         outF.write('%d\t%d\n' % (counter, db_id))
         dbF.write('%d\t%s\n' % (counter, node_id))
