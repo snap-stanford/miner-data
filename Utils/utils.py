@@ -10,8 +10,13 @@ from datetime import datetime
 HUMAN_SPECIES_ID = '9606'
 
 def get_filter(method_name):
-	if method_name==get_filter:
-		return None
+	'''Given a function name(string), returns the corresponding function in this file.
+
+	Input:
+		method_name: string, function name.
+	Output:
+		a function in this file or None, if the function doesn't exist.
+	'''
 	if method_name is None:
 		return None
 	possibles = globals().copy()
@@ -20,12 +25,27 @@ def get_filter(method_name):
 	return method
 
 def remove_species_id(name):
+	'''Filter that removes the species id from a string id. Currently only works
+	with the human species id.
+
+	Input:
+		name: an ENSEMBL human protein id, prefixed with the species id.
+	Output:
+		the ENSEMBL human protein id, without the species prefix.
+	'''
 	vals = split_then_strip(name, '.')
 	if len(vals) != 2 or vals[0] != HUMAN_SPECIES_ID:
 		return name
 	return vals[1]
 
 def add_species_id(name):
+	'''Adds the human species id as a prefix to the given ENSEMBL id.
+
+	Input:
+		name: the ENSEMBL protein id (string).
+	Output:
+		a string consisting of the human species id, '.' and name.
+	'''
 	return '%s.%s' % (HUMAN_SPECIES_ID, name)
 
 def split_then_strip(string, split_char):

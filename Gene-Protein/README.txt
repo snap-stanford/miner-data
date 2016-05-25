@@ -37,7 +37,7 @@ python ../Utils/extract_unique_node_ids.py /path/to/intermediate/protein-STRING-
 python ../Utils/create_snap_mode_table.py /path/to/intermediate/protein-STRING-nodelist.tsv protein STRING 0 --output_dir /path/to/output/
 
 # Create the CrossNet tables
-python ../Utils/create_snap_crossnet_table.py /path/to/intermediate/ensembl_mapping.tsv /path/to/output/miner-gene-2-HUGO_ENSEMBL-20160521.tsv /path/to/output/miner-protein-0-STRING-20160521.tsv ENSEMBL 0 --output_dir /path/to/output/ --skip_missing_ids
+python ../Utils/create_snap_crossnet_table.py /path/to/intermediate/ensembl_mapping.tsv /path/to/output/miner-gene-2-HUGO_ENSEMBL-20160521.tsv /path/to/output/miner-protein-0-STRING-20160521.tsv ENSEMBL 0 --output_dir /path/to/output/ --skip_missing_ids --dst_mode_filter add_species_id
 
 
 Scripts Included:

@@ -38,6 +38,7 @@ extraneous fields, but can also handle input lines that model many-to-many, many
 
 Below are details on the arguments and usage for each script (taken from the header of each file):
 
+** Note that these descriptions may be out-of-date. Please read the header of the respective script to get the most up-to-date information about its command line arguments, etc.
 
 ########################################
 ###     create_snap_mode_table.py    ###
@@ -120,6 +121,10 @@ Optional arguments:
                          full_crossnet_file.
 --skip_missing_ids       Flag; If any of the ids in the input tsv do not have snap ids (which are fetched from
                          the src and dst files), skip the line and continue parsing the data.
+--src_mode_filter        The name of a function in utils.py that should be applied to the source node id in 
+                         in the input file before using it to look up the snap id in the src_file. Defaults to None.
+--dst_mode_filter        The name of a function in utils.py that should be applied to the destination node id in 
+                         in the input file before using it to look up the snap id in the dst_file. Defaults to None.
 
 Example usage:
 Creating files for genes-function relationships using GeneOntology:
