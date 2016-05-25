@@ -7,6 +7,27 @@ File containing util functions useful for other scripts.
 import os
 from datetime import datetime
 
+HUMAN_SPECIES_ID = '9606'
+
+def get_filter(method_name):
+	if method_name==get_filter:
+		return None
+	if method_name is None:
+		return None
+	possibles = globals().copy()
+	possibles.update(locals())
+	method = possibles.get(method_name)
+	return method
+
+def remove_species_id(name):
+	vals = split_then_strip(name, '.')
+	if len(vals) != 2 or vals[0] != HUMAN_SPECIES_ID:
+		return name
+	return vals[1]
+
+def add_species_id(name):
+	return '%s.%s' % (HUMAN_SPECIES_ID, name)
+
 def split_then_strip(string, split_char):
 	'''Splits the string using the given character and removes whitespace from all
 	resulting substrings.

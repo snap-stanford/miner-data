@@ -68,6 +68,8 @@ parser.add_argument('--full_crossnet_file', help='output file name; outputs a li
 parser.add_argument('--db_edge_file', help='output file name; output contains mapping of snap ids to dataset ids; OVERRIDES output dir argument', default=None)
 parser.add_argument('--skip_missing_ids', action='store_true', help='don\'t throw an error if ids in input_file not found in src or dst file.')
 parser.add_argument('--snap_id_counter_start', type=int, help='where to start assigning snap ids', default=-1)
+parser.add_argument('--src_mode_filter', type=str, default=None)
+parser.add_argument('--dst_mode_filter', type=str, default=None)
 args = parser.parse_args()
 
 
@@ -102,6 +104,9 @@ if os.path.samefile(srcFile, dstFile):
 else:
   dst_mapping = utils.read_mode_file(dstFile)
 
+src_filter = utils.get_filter(args.src_mode_filter)
+dst_filter = utils.get_filter(args.dst_mode_filter)
+
 counter = args.snap_id_counter_start
 if counter == -1:
   counter = utils.get_max_id(outFNm)
@@ -115,6 +120,10 @@ with open(inFNm, 'r') as inF:
         vals =  utils.split_then_strip(line, '\t')
         id1 = vals[srcIdx]
         id2 = vals[dstIdx]
+        if src_filter:
+          id1 = src_filter(id1)
+        if dst_filter:
+          id2 = dst_filter(id2)
         if id1 == '' or id2 == '':
           continue
         if args.skip_missing_ids and (id1 not in src_mapping or id2 not in dst_mapping):
