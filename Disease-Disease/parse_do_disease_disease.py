@@ -1,13 +1,12 @@
 '''
-file : parse_do_diseases.py
+file : parse_do_disease_disease.py
 author: Viswajith Venugopal
 
-Parses the disease ontology OBO. Creates the disease ontology TSV, as well as
-a meta_dict.pickle which contains all the equivalence information 
-contained in the disease ontology.
+Parses the disease ontology OBO to create the 
+edge table using the is_a relationship.
 
 Usage:
-python parse_do_diseases.py <input_file>
+python parse_do_disease_disease.py <input_file> [--output_dir OUTPUT_DIR]
 
 Positional Arguments:
 input_file   : The doid.obo file which contains the disease ontology.
@@ -18,14 +17,13 @@ Optional Arugments:
 Example Usage:
 Input File: doid.obo
 
-Output directory : outputs/diseases/
+Output directory : outputs/disease-disease/
 
 Comamnd line:
-python parse_do_diseases.py doid.obo --output_dir outputs/diseases/
+python parse_do_disease_disease.py doid.obo --output_dir outputs/disease-disease/
 
 Output: 
-do_parsed.tsv
-meta_dict.pickle
+doid_disease_disease_parsed.tsv
 '''
 
 from collections import defaultdict
