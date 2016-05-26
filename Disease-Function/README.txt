@@ -1,7 +1,7 @@
 Current datasets containing disease-function information:
 - CTD
 
-Workflow for creating crossnet tables for disease-disease relationships:
+Workflow for creating crossnet tables for disease-function relationships:
 
 Pre-requisites:
 Must have the disease modes table from CTD (MESH), and the function mode table from
