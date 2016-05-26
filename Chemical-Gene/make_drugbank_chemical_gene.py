@@ -85,7 +85,7 @@ with open(edgeFile, 'r') as f, open(masterTable, 'w') as master, open(subTable, 
             if gene not in geneSnap:
                 print gene
                 continue
-            master.write(snapId + sep + "0 " + drugbankSnap[line[0]] + sep + geneSnap[gene] + '\n')
+            master.write(snapId + sep + "0" + sep + drugbankSnap[line[0]] + sep + geneSnap[gene] + '\n')
             sub.write(snapId + sep + line[0] + sep + gene + '\n')
 
 
