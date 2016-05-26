@@ -2,12 +2,12 @@
 file : parse_do_diseases.py
 author: Viswajith Venugopal
 
-Parses the disease ontology OBO. Creates the disease ontology TSV, as well as
-a meta_dict.pickle which contains all the equivalence information 
-contained in the disease ontology.
+Parses the disease ontology OBO. Creates the disease ontology node TSV, as well as
+files with mappings between DOIDs and the MESH and OMIM ids that there is a cross
+reference to in the Disease Ontology.
 
 Usage:
-python parse_do_diseases.py <input_file>
+python parse_do_diseases.py <input_file> [--output_dir OUTPUT_DIR]
 
 Positional Arguments:
 input_file   : The doid.obo file which contains the disease ontology.
@@ -25,13 +25,13 @@ python parse_do_diseases.py doid.obo --output_dir outputs/diseases/
 
 Output: 
 do_parsed.tsv
-meta_dict.pickle
+doid_mesh_equiv.tsv
+doid_omim_equiv.tsv
 '''
 
 from collections import defaultdict
 import os
 import argparse
-import pickle
 
 
 # In[79]:
@@ -108,7 +108,9 @@ parser.add_argument('--output_dir', help='Directory to output files', default='.
 args = parser.parse_args()
 
 output_fname = os.path.join(args.output_dir, "doid_parsed.tsv")
-metadict_fname = os.path.join(args.output_dir, "meta_dict.pickle")
+doid_mesh_fname = os.path.join(args.output_dir, "doid_mesh_equiv.tsv")
+doid_omim_fname = os.path.join(args.output_dir, "doid_omim_equiv.tsv")
+#metadict_fname = os.path.join(args.output_dir, "meta_dict.pickle")
 
 # Get the Disease Ontology as a list of one dictionary per entry.
 do_list = parse_do_file_to_list(args.input_file)
@@ -142,6 +144,15 @@ with open(output_fname, 'w') as out_f:
                     mesh_to_doid_dict[mesh_id].append(entry['id'])
                     doid_to_mesh_dict[entry['id']].append(mesh_id)
 
+with open(doid_mesh_fname, 'w') as mesh_f:
+    with open(doid_omim_fname, 'w') as omim_f:
+        for doid in doid_to_mesh_dict:
+            for mesh in doid_to_mesh_dict[doid]:
+                mesh_f.write(doid + '\t' + mesh + '\n')
+        for doid in doid_to_omim_dict:
+            for omim in doid_to_omim_dict[doid]:
+                omim_f.write(doid + '\t' + omim + '\n')
+"""
 meta_dict = {
     "doid_to_mesh_dict" : doid_to_mesh_dict,
     "mesh_to_doid_dict" : mesh_to_doid_dict,
@@ -150,3 +161,4 @@ meta_dict = {
     "doid_equiv_dict" : doid_equiv_dict,
 }
 pickle.dump(meta_dict, open(metadict_fname, 'w'))
+"""

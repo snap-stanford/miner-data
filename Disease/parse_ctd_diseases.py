@@ -2,15 +2,15 @@
 file : parse_ctd_diseases.py
 author: Viswajith Venugopal
 
-Parses the disease ontology OBO. Creates the disease ontology TSV, as well as
-a meta_dict.pickle which contains all the equivalence information 
-contained in the disease ontology.
+Parses the CTD disease node table into a TSV we can use to build our SNAP mode table
+Creates two separate files, one for CTD diseases with a MESH id, and another for 
+CTD diseases with an OMIM id.
 
 Usage:
-python parse_ctd_diseases.py <input_file> [--meta-dict <meta_dict_file>] [--output_dir <output_dir_file>]
+python parse_ctd_diseases.py <input_file> [--output_dir OUTPUT_DIR]
 
 Positional Arguments:
-input_file   : The doid.obo file which contains the disease ontology.
+input_file   : The CTD_diseases.tsv file which ships with CTD.
 
 Optional Arugments: 
 --output_dir : Directory to create output files. Defaults to the current working directory.
