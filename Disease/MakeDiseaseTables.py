@@ -1,12 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
-
-# In[ ]:
-
 from pprint import pprint
 from collections import defaultdict
 import os
@@ -647,9 +638,3 @@ for (chem_id, disease_id) in chem_disease_list:
 
 dc_dir_table_out_f.close()
 dc_ctd_out_f.close()
-
-
-# In[ ]:
-
-
-
