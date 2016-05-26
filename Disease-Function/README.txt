@@ -20,7 +20,7 @@ Output files:
 /path/to/output/miner-disease-function-0-CTD-20160521.tsv
 
 # Create intermediate files
-python make_disease_func_ctd.tsv /path/to/input/CTD_dir --output_dir /path/to/intermediate/
+python make_disease_func_ctd.py /path/to/input/CTD_dir --output_dir /path/to/intermediate/
 
 # Create cross net files
 python ../Utils/create_snap_crossnet_table.py /path/to/intermediate/ctd_disease_func_parsed.tsv /path/to/disease_mode/miner-disease-1-CTD_MESH-20160521.tsv /path/to/function_mode/miner-function-0-GO-20160521.tsv CTD 0 --output_dir /path/to/output/ --skip_missing_ids
