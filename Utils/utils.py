@@ -82,7 +82,7 @@ def get_max_id(input_file):
 	Output:
 	    max snap id in input file.
 	'''
-	max_id = 0
+	max_id = -1
 	if os.path.isfile(input_file):
 		with open(input_file, 'r') as inF:
 			for line in inF:
@@ -91,6 +91,7 @@ def get_max_id(input_file):
 				new_id = int(line.strip().split('\t')[0])
 				if new_id > max_id:
 					max_id = new_id
+	max_id += 1
 	return max_id
 
 def get_current_date():
