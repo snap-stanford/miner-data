@@ -132,7 +132,11 @@ with open(inFNm, 'r') as inF:
           continue
         if args.skip_missing_ids and (id1 not in src_mapping or id2 not in dst_mapping):
           continue
+        attr_strs = ''
+        for i in range(len(vals)):
+          if i != srcIdx and i != dstIdx:
+            attr_strs += '\t' + vals[i]
         fullF.write('%d\t%d\t%d\t%d\n' % (counter, db_id, src_mapping[id1], dst_mapping[id2]))
-        dbF.write('%d\t%d\t%d\n' % (counter, src_db_id, dst_db_id))
+        dbF.write('%d\t%d\t%d%s\n' % (counter, src_db_id, dst_db_id, attr_strs))
         counter += 1
 print 'Ending at snap id: %d' % counter

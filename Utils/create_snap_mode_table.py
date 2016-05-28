@@ -88,17 +88,21 @@ with open(inFNm, 'r') as inF:
     with open(dbFNm, 'w') as dbF:
       if counter == 0:
         outF.write('# snap_id\tdataset id\n')
-      outF.write('# Adding mapping for mode %s with dataset %s\n' % (mode_name, dataset))
       dbF.write('# Mapping for mode %s from dataset %s\n' % (mode_name, dataset))
       dbF.write('# snap_id\t%s specific id\n' % dataset)
       for line in inF:
         if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
           continue
-        node_id = utils.split_then_strip(line, '\t')[node_index]
+        vals = utils.split_then_strip(line, '\t')
+        node_id = vals[node_index]
         if node_id in seen or len(node_id) == 0:
           continue
+        attrs_str = ''
+        for i in range(len(vals)):
+          if i != node_index:
+            attrs_str += '\t' + vals[i]
         outF.write('%d\t%d\n' % (counter, db_id))
-        dbF.write('%d\t%s\n' % (counter, node_id))
+        dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
         seen.add(node_id)
         counter += 1
 
