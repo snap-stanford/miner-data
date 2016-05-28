@@ -7,16 +7,24 @@ In addition, there are directories (with readmes on how to generate the respecti
 
 Modes
 - Genes
+	- HUGO (http://www.genenames.org/cgi-bin/statistics)
+	- GeneOntology (http://geneontology.org/page/download-annotations)
 - Proteins
+	- STRING (http://string-db.org/cgi/download.pl)
 - Functions
+	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemicals
 - Diseases
 
 CrossNets
 - Gene-Protein
+	- ENSEMBL (http://www.ensembl.org/biomart)
 - Protein-Protein
+	- STRING (http://string-db.org/cgi/download.pl)
 - Gene-Function
+	- GeneOntology (http://geneontology.org/page/download-annotations)
 - Function-Function
+	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemical-Chemical
 - Chemical-Gene
 
