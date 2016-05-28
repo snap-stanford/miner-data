@@ -206,6 +206,8 @@ def read_mode_file(map_file):
 		for line in inF:
 			if len(line) == 0 or line[0] == '#':
 				continue
-			(snap_id, dataset_id) = line.strip().split('\t')
+			vals = split_then_strip(line)
+			snap_id = vals[0]
+			dataset_id = vals[1]
 			mapping[dataset_id] = int(snap_id)
 	return mapping
