@@ -33,6 +33,7 @@ python extract_unique_node_ids.py STRING.tsv STRING-nodes.tsv STRING 0 1 --node_
 
 
 import argparse
+import utils
 
 parser = argparse.ArgumentParser(description='Extract unique node ids from file.')
 parser.add_argument('input_file', help='input file name.')

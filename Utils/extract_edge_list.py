@@ -1,4 +1,3 @@
-import argparse
 '''
 file: extract_edge_list.py
 author: Sheila Ramaswamy(@sramas15)
@@ -38,6 +37,8 @@ Workflow:
 
 python extract_edge_list.py STRING.tsv STRING-edges.tsv STRING 1 5 --src_node_name protein_1 --dst_node_name protein_2
 '''
+import argparse
+import utils
 
 parser = argparse.ArgumentParser(description='Extract edges and additional data from a file')
 parser.add_argument('input_file', help='input file name.')
