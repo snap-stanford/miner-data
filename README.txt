@@ -14,6 +14,7 @@ Modes
 - Functions
 	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemicals
+        - Drugbank (http://www.drugbank.ca/)
 - Diseases
 	- DiseaseOntology (http://disease-ontology.org/)
 	- CTD (ctdbase.org)
@@ -29,7 +30,9 @@ CrossNets
 - Function-Function
 	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemical-Chemical
+        - Drugbank (http://www.drugbank.ca/)
 - Chemical-Gene
+        - Drugbank (http://www.drugbank.ca/)
 - Disease-Disease
 	- DiseaseOntology (http://disease-ontology.org/)
 - Disease-Gene
