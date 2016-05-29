@@ -15,6 +15,9 @@ Modes
 	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemicals
 - Diseases
+	- DiseaseOntology (http://disease-ontology.org/)
+	- CTD (ctdbase.org)
+	- OMIM (http://www.omim.org/)
 
 CrossNets
 - Gene-Protein
@@ -27,6 +30,13 @@ CrossNets
 	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemical-Chemical
 - Chemical-Gene
-
+- Disease-Disease
+	- DiseaseOntology (http://disease-ontology.org/)
+- Disease-Gene
+	- CTD (ctdbase.org)
+- Disease-Chemical
+	- CTD (ctdbase.org)
+- Disease-Function
+	- CTD (ctdbase.org)
 
 Datasets can be found at /dfs/ilfs2/0/MINER-BIO. 
