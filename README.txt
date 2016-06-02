@@ -17,7 +17,7 @@ Modes
         - Drugbank (http://www.drugbank.ca/)
 - Diseases
 	- DiseaseOntology (http://disease-ontology.org/)
-	- CTD (ctdbase.org)
+	- CTD (http://ctdbase.org)
 	- OMIM (http://www.omim.org/)
 
 CrossNets
@@ -36,11 +36,11 @@ CrossNets
 - Disease-Disease
 	- DiseaseOntology (http://disease-ontology.org/)
 - Disease-Gene
-	- CTD (ctdbase.org)
+	- CTD (http://ctdbase.org)
 - Disease-Chemical
-	- CTD (ctdbase.org)
+	- CTD (http://ctdbase.org)
 - Disease-Function
-	- CTD (ctdbase.org)
+	- CTD (http://ctdbase.org)
 
 Datasets can be found at /dfs/ilfs2/0/MINER-BIO. 
 
