@@ -89,7 +89,7 @@ with open(inFNm, 'r') as inF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
-        outF.write('# snap_id\tdataset id\n')
+        outF.write('# snap_nid\tdataset id\n')
       dbF.write('# Mode table for dataset: %s\n' % dataset)
       dbF.write('# File generated on: %s\n' % utils.get_current_date())
       add_schema = True

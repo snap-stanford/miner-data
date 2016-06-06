@@ -110,7 +110,7 @@ else:
 src_filter = utils.get_filter(args.src_mode_filter)
 dst_filter = utils.get_filter(args.dst_mode_filter)
 
-has_schema = False
+add_schema = True
 counter = args.snap_id_counter_start
 if counter == -1:
   counter = utils.get_max_id(outFNm)
@@ -118,24 +118,25 @@ print 'Starting at snap id: %d' % counter
 with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as fullF:
     with open(outFNm2, 'w') as dbF:
+      # Add schema/metadata
+      if counter == 0:
+        fullF.write('# Full crossnet file for %s to %s\n' % (mode_name1, mode_name2))
+        fullF.write('# File generated on: %s\n' % utils.get_current_date())
+        fullF.write('# snap_eid\tdataset_id\tsrc_snap_nid\tdst_snap_nid\n')
+      dbF.write('# Crossnet table for dataset: %s\n' % dataset)
+      dbF.write('# File generated on: %s\n' % utils.get_current_date())
+      # Process file
       for line in inF:
         if line[0] == '#' or line[0] == '!'  or line[0] == '\n':
           continue
         vals =  utils.split_then_strip(line, '\t')
-        if not has_schema:
-          attrs_schema = '# snap_id\tsrc_dataset_id\tdst_dataset_id'
+        if add_schema:
+          attrs_schema = '# snap_eid\tsrc_dataset_id\tdst_dataset_id'
           for i in range(len(vals)):
             if i != srcIdx and i != dstIdx:
               attrs_schema += '\tC%d' % i
-          dbF.write('# Crossnet table for dataset: %s\n' % dataset)
-          dbF.write('# File generated on: %s\n' % utils.get_current_date())
           dbF.write('%s\n' % attrs_schema)
-          has_schema = True
-        if counter == 0:
-          fullF.write('# Full crossnet file for %s to %s\n' % (mode_name1, mode_name2))
-          fullF.write('# File generated on: %s\n' % utils.get_current_date())
-          fullF.write('# snap_id\tdataset_id\tsrc_snap_id\tdst_snap_id\n')
-        attrs_schema += '\n'
+          add_schema = False
         id1 = vals[srcIdx]
         id2 = vals[dstIdx]
         if src_filter:
