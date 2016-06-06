@@ -87,13 +87,23 @@ with open(inFNm, 'r') as inF:
   with open(outFNm, 'a') as outF:
     with open(dbFNm, 'w') as dbF:
       if counter == 0:
+        outF.write('# Full mode table for %s\n' % mode_name)
+        outF.write('# File generated on: %s\n' % utils.get_current_date())
         outF.write('# snap_id\tdataset id\n')
-      dbF.write('# Mapping for mode %s from dataset %s\n' % (mode_name, dataset))
-      dbF.write('# snap_id\t%s specific id\n' % dataset)
+      dbF.write('# Mode table for dataset: %s\n' % dataset)
+      dbF.write('# File generated on: %s\n' % utils.get_current_date())
+      add_schema = True
       for line in inF:
         if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
           continue
         vals = utils.split_then_strip(line, '\t')
+        if add_schema:
+          attrs_schema = '# snap_nid\tdataset_nid'
+          for i in range(len(vals)):
+            if i != node_index:
+              attrs_schema += '\tC%d' % i
+          dbF.write('%s\n' % attrs_schema)
+          add_schema = False
         node_id = vals[node_index]
         if node_id in seen or len(node_id) == 0:
           continue

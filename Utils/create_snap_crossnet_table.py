@@ -89,16 +89,15 @@ dstIdx = args.dst_node_index
 src_db_id = utils.parse_dataset_id_from_name(os.path.basename(srcFile))
 dst_db_id = utils.parse_dataset_id_from_name(os.path.basename(dstFile))
 
+mode_name1 = utils.parse_mode_name_from_name(os.path.basename(srcFile))
+mode_name2 = utils.parse_mode_name_from_name(os.path.basename(dstFile))
+
 output_dir = args.output_dir
 outFNm = args.full_crossnet_file
 if outFNm is None:
-  mode_name1 = utils.parse_mode_name_from_name(os.path.basename(srcFile))
-  mode_name2 = utils.parse_mode_name_from_name(os.path.basename(dstFile))
   outFNm = os.path.join(args.output_dir, utils.get_full_cross_file_name(mode_name1, mode_name2))
 outFNm2 = args.db_edge_file
 if outFNm2 is None:
-  mode_name1 = utils.parse_mode_name_from_name(os.path.basename(srcFile))
-  mode_name2 = utils.parse_mode_name_from_name(os.path.basename(dstFile))
   outFNm2 = os.path.join(args.output_dir, utils.get_cross_file_name(mode_name1, mode_name2, db_id, dataset))
 
 
@@ -111,6 +110,7 @@ else:
 src_filter = utils.get_filter(args.src_mode_filter)
 dst_filter = utils.get_filter(args.dst_mode_filter)
 
+has_schema = False
 counter = args.snap_id_counter_start
 if counter == -1:
   counter = utils.get_max_id(outFNm)
@@ -122,6 +122,20 @@ with open(inFNm, 'r') as inF:
         if line[0] == '#' or line[0] == '!'  or line[0] == '\n':
           continue
         vals =  utils.split_then_strip(line, '\t')
+        if not has_schema:
+          attrs_schema = '# snap_id\tsrc_dataset_id\tdst_dataset_id'
+          for i in range(len(vals)):
+            if i != srcIdx and i != dstIdx:
+              attrs_schema += '\tC%d' % i
+          dbF.write('# Crossnet table for dataset: %s\n' % dataset)
+          dbF.write('# File generated on: %s\n' % utils.get_current_date())
+          dbF.write('%s\n' % attrs_schema)
+          has_schema = True
+        if counter == 0:
+          fullF.write('# Full crossnet file for %s to %s\n' % (mode_name1, mode_name2))
+          fullF.write('# File generated on: %s\n' % utils.get_current_date())
+          fullF.write('# snap_id\tdataset_id\tsrc_snap_id\tdst_snap_id\n')
+        attrs_schema += '\n'
         id1 = vals[srcIdx]
         id2 = vals[dstIdx]
         if src_filter:

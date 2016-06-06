@@ -90,6 +90,7 @@ if os.path.isfile(outFNm):
 with open(outFNm, 'a') as equivF:
   if add_header:
     equivF.write('# Equivalence table for mode %s\n' % mode_name)
+    equivF.write('# File generated on: %s\n' % utils.get_current_date())
     equivF.write('# snap_id_1\tsnap_id_2\n')
   if inFNm is not None:
     with open(inFNm, 'r') as inF:
