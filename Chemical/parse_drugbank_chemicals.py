@@ -39,12 +39,24 @@ outputFile = os.path.join(args.output_dir, "drugbank_parsed.tsv")
 soup = BeautifulSoup(open(args.input_file),"xml")
 sep = "\t"
 empty = "NULL"
+fields = ["name", "description", "general-references", "synthesis-reference",
+          "protein-binding", "classification", "salts", "synonyms", "products", "international-brands", "mixtures",
+          "manufacturers", "prices", "categories", "dosages", "atc-codes", "food-interactions", "pathways","reactions",
+          "snp-effects","snp-adverse-drug-reactions"]
+header = ["drugbankID", "pc_Compund", "pc_substance"] + fields;
+
+def recur(elem,l):
+    for e in elem.findChildren():
+        if not e.findChildren():
+            l.append(e.text.strip())
+        else:
+            recur(e, l)
 with open(outputFile, 'w') as f:
+    f.write("# " + sep.join(header) + '\n')
     for drug in soup.findAll("drug"):
         chemFound = False
         toPrint = ""
         toPrint += drug.find("drugbank-id").text + sep
-        #toPrint += drug.find("name").text + sep
         identifiers = [i for i in drug.findAll("external-identifier")]
         for i in identifiers:
             database = i.find("resource").text
@@ -62,9 +74,29 @@ with open(outputFile, 'w') as f:
                 continue
             value = i.find("identifier").text
             chemFound = True
-            toPrint += value
+            toPrint += value + sep
         if not chemFound:
-            toPrint += empty
-        f.write(toPrint.encode('utf-8') + '\n')
-    
- 
+            toPrint += empty + sep 
+        attributes = []
+        for field in fields:
+            l = []
+            if not drug.find(field):
+                attributes.append(empty)
+                continue
+            if drug.find(field).findChildren():
+                recur(drug.find(field),l)
+                for i in xrange(len(l)):
+                    if l[i] == "":
+                        l[i] = empty
+                attributes.append("|".join(l).encode('utf-8'))
+            else:
+                if drug.find(field).text != "":
+                    genRef = drug.find(field).text
+                    genRef = genRef.split("\n")
+                    attributes.append("|".join(genRef).encode('utf-8'))
+                    #attributes.append(drug.find(field).text.encode('utf-8'))
+                else:
+                    attributes.append(empty)
+        toPrint = toPrint.encode('utf-8') + sep.join(attributes)
+        f.write(toPrint + '\n')
+

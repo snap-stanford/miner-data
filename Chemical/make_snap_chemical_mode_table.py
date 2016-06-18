@@ -64,9 +64,14 @@ with open(args.input_file, 'r') as input, open(masterTable, 'w') as master,open(
     eqTable.write('# Equivalence table for mode chemical\n')
     eqTable.write('# snap_id_1\tsnap_id_2\n')
     for line in input:
+        if line.startswith('#'):
+            continue
         line = line.strip().split(sep)
         currId = []
+        # Only first three fields are relavant
         for num,id in enumerate(line):
+            if num > 2:
+                break
             if id == "NULL":
                 continue
             snapId = snapIdPrefix + str(idNum)
