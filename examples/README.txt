@@ -42,6 +42,12 @@ python miner_load_tables.py config.txt --loglevel info
 Output: 
 miner.graph
 
+Note:
+Due to 32 bit limitation we can't fully load the Protein-Protein edges.
+Only edges with confidence level greater than 200 are used. When SNAP supports
+64 bit make the following change in config file:
+Protein-Protein = /dfs/ilfs2/0/MINER-BIO/types/Protein-Protein/20160418/snap-tables/miner-protein-protein-20160607.tsv
+
 ---------------------------
 file   : miner_get_stats.py
 ---------------------------
