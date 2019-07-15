@@ -42,7 +42,7 @@ CrossNets
 - Disease-Function
 	- CTD (http://ctdbase.org)
 
-Datasets can be found at /dfs/ilfs2/0/MINER-BIO. 
+Datasets can be found at /dfs/scratch2/MINER-BIO/data-miner. 
 
 The miner-dataset at a glance:
 -------------------------------
