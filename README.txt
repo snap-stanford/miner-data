@@ -8,7 +8,7 @@ In addition, there are directories (with readmes on how to generate the respecti
 Modes
 - Genes
 	- HUGO (http://www.genenames.org/cgi-bin/statistics)
-	- GeneOntology (http://geneontology.org/page/download-annotations)
+	- GeneOntology (http://geneontology.org/page/download-go-annotations)
 - Proteins
 	- STRING (http://string-db.org/cgi/download.pl)
 - Functions
