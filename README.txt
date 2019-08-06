@@ -26,7 +26,7 @@ CrossNets
 - Protein-Protein
 	- STRING (http://string-db.org/cgi/download.pl)
 - Gene-Function
-	- GeneOntology (http://geneontology.org/page/download-annotations)
+	- GeneOntology (http://geneontology.org/docs/download-go-annotations/)
 - Function-Function
 	- GeneOntology (http://geneontology.org/page/download-ontology)
 - Chemical-Chemical
