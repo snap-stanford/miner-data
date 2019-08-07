@@ -76,6 +76,8 @@ def parse_omim_file_to_list(omim_dir):
         cyto_loc = sp_line[3]
         gene_symbols = sp_line[6]
         gene_name = sp_line[7]
+        
+        ensembl_id = sp_line[10]
 
         comments = sp_line[11]
         phenotypes = sp_line[12]
