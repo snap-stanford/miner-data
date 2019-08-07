@@ -1,5 +1,5 @@
 '''
-file : parse_ctd_diseases2.py
+file : parse_ctd_diseases.py
 author: Farzaan Kaiyom
 based on scripts by Viswajith Venugopal
 
@@ -7,7 +7,7 @@ Parses the OMIM latest disease table found in genemap2.txt
 ^ *This is the latest formatting for OMIM data* ^
 
 Usage:
-python parse_ctd_diseases2.py <input_file> [--output_dir OUTPUT_DIR]
+python parse_ctd_diseases.py <input_file> [--output_dir OUTPUT_DIR]
 
 Positional Arguments:
 input_file   : The directory containing all the OMIM files.
@@ -21,7 +21,7 @@ Input File: OMIM/08-2019/
 Output directory : ../../output/diseases/
 
 Comamnd line:
-python parse_ctd_diseases2.py OMIM/08-2019/ --output_dir output/diseases/
+python parse_ctd_diseases.py OMIM/08-2019/ --output_dir output/diseases/
 
 Output: 
 omim_parsed.tsv
