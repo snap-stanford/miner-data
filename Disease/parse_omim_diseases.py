@@ -1,11 +1,13 @@
 '''
-file : parse_ctd_diseases.py
-author: Viswajith Venugopal
+file : parse_ctd_diseases2.py
+author: Farzaan Kaiyom
+based on scripts by Viswajith Venugopal
 
-Parses the OMIM disease table.
+Parses the OMIM latest disease table found in genemap2.txt
+^ *This is the latest formatting for OMIM data* ^
 
 Usage:
-python parse_ctd_diseases.py <input_file> [--output_dir OUTPUT_DIR]
+python parse_ctd_diseases2.py <input_file> [--output_dir OUTPUT_DIR]
 
 Positional Arguments:
 input_file   : The directory containing all the OMIM files.
@@ -14,12 +16,12 @@ Optional Arugments:
 --output_dir : Directory to create output files. Defaults to the current working directory.
 
 Example Usage:
-Input File: OMIM/0416_OMIM
+Input File: OMIM/08-2019/
 
-Output directory : outputs/diseases/
+Output directory : ../../output/diseases/
 
 Comamnd line:
-python parse_ctd_diseases.py OMIM/0416_OMIM --output_dir outputs/diseases/
+python parse_ctd_diseases2.py OMIM/08-2019/ --output_dir output/diseases/
 
 Output: 
 omim_parsed.tsv
@@ -49,7 +51,7 @@ def parse_omim_file_to_list(omim_dir):
     """
     
     mim2gene_f = open(os.path.join(omim_dir, 'mim2gene.txt'), 'r')
-    genemap_f = open(os.path.join(omim_dir, 'genemap.txt'), 'r')
+    genemap_f = open(os.path.join(omim_dir, 'genemap2.txt'), 'r')
     
     # The set of mim numbers corresponding to diseases.
     disease_mims = set()
@@ -69,16 +71,18 @@ def parse_omim_file_to_list(omim_dir):
             continue
 
         sp_line = line.strip('\n').split('\t')
-        mim_number = sp_line[8]
+        mim_number = sp_line[5]
         if mim_number not in disease_mims:
             continue
-        cyto_loc = sp_line[4]
-        gene_symbols = sp_line[5]
+        cyto_loc = sp_line[3]
+        gene_symbols = sp_line[6]
         gene_name = sp_line[7]
+        
+        ensembl_id = sp_line[10]
 
-        comments = sp_line[10]
-        phenotypes = sp_line[11]
-        mouse_gene_symbol = sp_line[12]
+        comments = sp_line[11]
+        phenotypes = sp_line[12]
+        mouse_gene_symbol = sp_line[13]
         omim_list.append({
                 'id' : 'OMIM:' + mim_number,
                 'cyto_loc': cyto_loc,
