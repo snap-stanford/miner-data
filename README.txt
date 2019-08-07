@@ -22,7 +22,7 @@ Modes
 
 CrossNets
 - Gene-Protein
-	- ENSEMBL (http://www.ensembl.org/biomart/martview)
+	- ENSEMBL (http://www.ensembl.org/biomart)
 - Protein-Protein
 	- STRING (http://string-db.org/cgi/download.pl)
 - Gene-Function
