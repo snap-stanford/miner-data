@@ -70,16 +70,16 @@ def parse_omim_file_to_list(omim_dir):
             continue
 
         sp_line = line.strip('\n').split('\t')
-        mim_number = sp_line[8]
+        mim_number = sp_line[5]
         if mim_number not in disease_mims:
             continue
-        cyto_loc = sp_line[4]
-        gene_symbols = sp_line[5]
+        cyto_loc = sp_line[3]
+        gene_symbols = sp_line[6]
         gene_name = sp_line[7]
 
-        comments = sp_line[10]
-        phenotypes = sp_line[11]
-        mouse_gene_symbol = sp_line[12]
+        comments = sp_line[11]
+        phenotypes = sp_line[12]
+        mouse_gene_symbol = sp_line[13]
         omim_list.append({
                 'id' : 'OMIM:' + mim_number,
                 'cyto_loc': cyto_loc,
