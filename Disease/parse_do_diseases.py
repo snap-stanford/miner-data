@@ -143,6 +143,8 @@ with open(output_fname, 'w') as out_f:
                     # For consistency, use MESH:id instead of MSH:id
                     if xref.startswith('MSH'):
                         mesh_id = xref[:1] + 'E' + xref[1:]
+                    else:
+                        mesh_id = xref[:1] + xref[1:]
                     mesh_to_doid_dict[mesh_id].append(entry['id'])
                     doid_to_mesh_dict[entry['id']].append(mesh_id)
 
