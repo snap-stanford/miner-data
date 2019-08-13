@@ -137,10 +137,12 @@ with open(output_fname, 'w') as out_f:
                 if xref.startswith('OMIM'):
                     omim_to_doid_dict[xref].append(entry['id'])
                     doid_to_omim_dict[entry['id']].append(xref)
+                    
+                #updated for 2019 DOID dataset
                 elif xref.startswith('MSH') or xref.startswith('MESH'):
                     # For consistency, use MESH:id instead of MSH:id
-                    mesh_id = xref[:1] + 'E' + xref[1:]
-                    
+                    if xref.startswith('MSH'):
+                        mesh_id = xref[:1] + 'E' + xref[1:]
                     mesh_to_doid_dict[mesh_id].append(entry['id'])
                     doid_to_mesh_dict[entry['id']].append(mesh_id)
 
