@@ -65,7 +65,7 @@ def parse_ctd_gene_diseases(ctd_dir):
     
     ncbi_to_uniprot_dict = get_ncbi_to_uniprot(ctd_dir)
     disease_gene_list = []
-    ctd_gene_dis_fname = os.path.join(ctd_dir, 'CTD_genes_diseases2.tsv')
+    ctd_gene_dis_fname = os.path.join(ctd_dir, 'CTD_genes_diseases.tsv')
     with open(ctd_gene_dis_fname) as in_f:
         i = 0
         for line in in_f:
@@ -89,7 +89,7 @@ parser.add_argument('input_dir', help='Input files directory. This should be the
 parser.add_argument('--output_dir', help='Directory to output files', default='.')
 args = parser.parse_args()
 
-output_fname = os.path.join(args.output_dir, "ctd_disease_gene_parsed.tsv")
+output_fname = os.path.join(args.output_dir, "ctd_disease_gene_parsed2.tsv")
 
 
 with open(output_fname, 'w') as out_f:
