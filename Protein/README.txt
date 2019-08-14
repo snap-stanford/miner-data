@@ -18,8 +18,8 @@ Intermediate Files:
 /path/to/intermediate/protein-STRING-nodelist.tsv
 
 # Extract the edge list from the full protein interactions file; potentially may have to change
-# the divider default value in the script (assume src and dst columns are 1 and 5)
-python ../Utils/extract_edge_list.py /path/to/input/protein.links.full.v10.txt /path/to/intermediate/protein-STRING-edgelist.tsv STRING 1 5
+# the divider default value in the script (assume src and dst columns are 0 and 1)
+python ../Utils/extract_edge_list.py /path/to/input/protein.links.full.v10.txt /path/to/intermediate/protein-STRING-edgelist.tsv STRING 0 1 --divider " "
 
 # Extract the unique protein ids from the edge list (columns 0 and 1)
 python ../Utils/extract_unique_node_ids.py /path/to/intermediate/protein-STRING-edgelist.tsv /path/to/intermediate/protein-STRING-nodelist.tsv STRING 0 1
