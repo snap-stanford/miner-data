@@ -60,6 +60,7 @@ parser.add_argument('--dst_node_name', default='node_id2', type=str, help='how t
 
 if __name__ == '__main__':
     args = parser.parse_args()
+    #print(args)
     with open(args.input_file, 'r') as inF:
         with open(args.output_file, 'w') as outF:
             outF.write('# Dataset: %s\n' % args.dataset_name)
@@ -70,8 +71,9 @@ if __name__ == '__main__':
                 if line[0] == '#' or line[0] == '!' or line[0] == '\n' or (i==0 and args.has_title):
                     continue
                 vals = utils.split_then_strip(line, args.divider)
-                src_nodes = [vals[args.src_node_col]]
-                dst_nodes = [vals[args.dst_node_col]]
+		#print(vals)
+                src_nodes = [vals[int(args.src_node_col)]]
+                dst_nodes = [vals[int(args.dst_node_col)]]
                 if args.src_node_sep is not None:
                     src_nodes = src_nodes[0].split(args.src_node_sep)
                 if args.dst_node_sep is not None:
