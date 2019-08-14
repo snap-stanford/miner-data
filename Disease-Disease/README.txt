@@ -18,7 +18,7 @@ Output files:
 /path/to/output/miner-disease-disease-0-DOID-20160521.tsv
 
 # Create intermediate files
-python parse_do_disease_disease.tsv /path/to/input/doid.obo --output_dir /path/to/intermediate/
+python parse_do_disease_disease.py /path/to/input/doid.obo --output_dir /path/to/intermediate/
 
 # Create cross net files
 python ../Utils/create_snap_crossnet_table.py /path/to/intermediate/doid_disease_disease_parsed.tsv /path/to/mode/miner-disease-0-DOID-20160521.tsv /path/to/mode/miner-disease-0-DOID-20160521.tsv DOID 0 --output_dir /path/to/output/
