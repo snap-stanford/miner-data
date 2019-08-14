@@ -40,8 +40,8 @@ def load_disease_functions_ctd(ctd_dir):
             if line.startswith('#'):
                 continue
             sp_line = line.strip('\n').split('\t')
-            disease_id = 'MESH:' + sp_line[1]
-            go_id = sp_line[3]
+            disease_id = sp_line[3]
+            go_id = sp_line[1]
             global_list.append((disease_id, go_id))
     return global_list
 
