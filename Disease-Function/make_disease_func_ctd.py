@@ -31,9 +31,9 @@ import os
 import argparse
 
 def load_disease_functions_ctd(ctd_dir):
-    f1 = open(os.path.join(ctd_dir, 'CTD_Disease-GO_biological_process_associations.tsv'), 'r')
-    f2 = open(os.path.join(ctd_dir, 'CTD_Disease-GO_cellular_component_associations.tsv'), 'r')
-    f3 = open(os.path.join(ctd_dir, 'CTD_Disease-GO_molecular_function_associations.tsv'), 'r')
+    f1 = open(os.path.join(ctd_dir, 'CTD_Phenotype-Disease_biological_process_associations.tsv'), 'r')
+    f2 = open(os.path.join(ctd_dir, 'CTD_Phenotype-Disease_cellular_component_associations.tsv'), 'r')
+    f3 = open(os.path.join(ctd_dir, 'CTD_Phenotype-Disease_molecular_function_associations.tsv'), 'r')
     global_list = []
     for f in [f1, f2, f3]:
         for line in f:
