@@ -5,7 +5,7 @@ author: Sheila Ramaswamy(@sramas15)
 Script that creates an edge list given the input file.
 
 Usage:
-python extract_unique_node_ids.py <input_file_path> <output_file_path> <dataset_name> <src_node_column> <dst_node_column>
+python extract_edge_list.py <input_file_path> <output_file_path> <dataset_name> <src_node_column> <dst_node_column>
 
 Positional Arguments:
 input_file:              Path to the input file; Input file should be a tsv.
