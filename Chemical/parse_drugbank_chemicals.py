@@ -85,7 +85,7 @@ with open(outputFile, 'w') as f:
                 continue
             if drug.find(field).findChildren():
                 recur(drug.find(field),l)
-                for i in xrange(len(l)):
+                for i in range(len(l)):
                     if l[i] == "":
                         l[i] = empty
                 attributes.append("|".join(l).encode('utf-8'))
