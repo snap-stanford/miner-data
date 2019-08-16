@@ -61,9 +61,10 @@ def get_ncbi_to_uniprot(ctd_dir):
 
     return ncbi_to_uniprot_dict
 
-def parse_ctd_gene_diseases(ctd_dir):
+def parse_ctd_gene_diseases(ctd_dir,DGN_dir):
     
     ncbi_to_uniprot_dict = get_ncbi_to_uniprot(ctd_dir)
+    dgn_dict = get_DGN_to_MESH(DGN_dir)
     disease_gene_list = []
     ctd_gene_dis_fname = os.path.join(ctd_dir, 'CTD_genes_diseases.tsv')
     with open(ctd_gene_dis_fname) as in_f:
@@ -85,7 +86,8 @@ def parse_ctd_gene_diseases(ctd_dir):
      
 
 parser = argparse.ArgumentParser(description='Parse CTD to find disease-gene links.')
-parser.add_argument('input_dir', help='Input files directory. This should be the directory with all the CTD TSVs.')
+parser.add_argument('input_dir1', help='Input files directory. This should be the directory with all the CTD TSVs.')
+parser.add_argument('input_dir2', help='Input files directory. This should be the directory with the DGN-MESH mapping.')
 parser.add_argument('--output_dir', help='Directory to output files', default='.')
 args = parser.parse_args()
 
@@ -94,6 +96,6 @@ output_fname = os.path.join(args.output_dir, "ctd_disease_gene_parsed2.tsv")
 
 with open(output_fname, 'w') as out_f:
     out_f.write('#Disease Gene links from CTD.\n')
-    for (disease_id, uni_id) in parse_ctd_gene_diseases(args.input_dir):
+    for (disease_id, uni_id) in parse_ctd_gene_diseases(args.input_dir1,args.input_dir2):
         out_f.write('\t'.join([disease_id, uni_id]))
         out_f.write('\n')
