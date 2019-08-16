@@ -16,6 +16,7 @@ Output files:
 /path/to/output/miner-chemical-equiv-20160523.tsv
 
 # Parse Data
+# Beautiful Soup is required for this, use pipenv to install if you lack permissions
 python parse_drugbank_chemicals.py /path/to/input/drugbank.xml --output-dir /path/to/intermediate/
 
 # Create Mode tables
