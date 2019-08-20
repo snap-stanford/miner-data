@@ -35,6 +35,7 @@ parser = argparse.ArgumentParser(description='Generate a Multi-Modal Network')
 parser.add_argument('config_file', help='path of a config file.')
 parser.add_argument('--output_dir', help='output path to save the Multi-Modal Network', default='.')
 parser.add_argument('--loglevel', help='info for debug print.')
+parser.add_argument('--outputf', help='output file name.', default='miner.graph')
 args = parser.parse_args()
 config = ConfigParser.ConfigParser()
 config.readfp(open(args.config_file))
@@ -234,7 +235,7 @@ except ConfigParser.NoOptionError:
 
 # Save the graph
 logging.info('Saving Multi-Modal Network to disk')
-outputPath = os.path.join(args.output_dir, "miner.graph")
+outputPath = os.path.join(args.output_dir, args.outputf)
 FOut = snap.TFOut(outputPath)
 Graph.Save(FOut)
 FOut.Flush()
