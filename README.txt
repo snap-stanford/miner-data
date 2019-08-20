@@ -57,16 +57,16 @@ Disease      |   25.969
 --------------------------------------
     Cross-Nets     |     Edges
 --------------------------------------
-Chemical-Chemical  |     in progress
-Chemical-Gene      |     in progress
+Chemical-Chemical  |     *in progress*
+Chemical-Gene      |     *in progress*
 Function-Function  |     249,828
 Gene-Function      |     481,543
 Gene-Protein       |     18,649
 Disease-Disease    |     9,383
-Disease-Gene       |     33,167*
+Disease-Gene       |     *33,167*
 Disease-Function   |     2,138,340
-Disease-Chemical   |     in progress
-Protein-Protein    |     in progress
+Disease-Chemical   |     *in progress*
+Protein-Protein    |     2,147,483,643
 * Disease-Gene number may be incorrect
 
 The old miner-dataset at a glance:
