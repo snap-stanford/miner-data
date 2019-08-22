@@ -45,58 +45,67 @@ fields = ["name", "description", "general-references", "synthesis-reference",
           "snp-effects","snp-adverse-drug-reactions"]
 header = ["drugbankID", "pc_Compund", "pc_substance"] + fields;
 
+seenids = set()
+seen = set()
+
 def recur(elem,l):
     for e in elem.findChildren():
         if not e.findChildren():
             l.append(e.text.strip())
         else:
             recur(e, l)
+
 with open(outputFile, 'w') as f:
     f.write("# " + sep.join(header) + '\n')
     for drug in soup.findAll("drug"):
-        chemFound = False
-        toPrint = ""
-        toPrint += drug.find("drugbank-id").text + sep
-        identifiers = [i for i in drug.findAll("external-identifier")]
-        for i in identifiers:
-            database = i.find("resource").text
-            if database != "PubChem Compound":
-                continue
-            value = i.find("identifier").text
-            chemFound = True
-            toPrint += value + sep
-        if not chemFound:
-            toPrint += empty + sep
-        chemFound = False
-        for i in identifiers:
-            database = i.find("resource").text
-            if database != "PubChem Substance":
-                continue
-            value = i.find("identifier").text
-            chemFound = True
-            toPrint += value + sep
-        if not chemFound:
-            toPrint += empty + sep 
-        attributes = []
-        for field in fields:
-            l = []
-            if not drug.find(field):
-                attributes.append(empty)
-                continue
-            if drug.find(field).findChildren():
-                recur(drug.find(field),l)
-                for i in range(len(l)):
-                    if l[i] == "":
-                        l[i] = empty
-                attributes.append("|".join(l).encode('utf-8'))
-            else:
-                if drug.find(field).text != "":
-                    genRef = drug.find(field).text
-                    genRef = genRef.split("\n")
-                    attributes.append("|".join(genRef).encode('utf-8'))
-                    #attributes.append(drug.find(field).text.encode('utf-8'))
-                else:
-                    attributes.append(empty)
-        toPrint = toPrint.encode('utf-8') + sep.join(attributes)
-        f.write(toPrint + '\n')
+        name = drug.find("name").text
+        id = drug.find("drugbank-id").text
+        if name not in seen or id not in seenids:
+                  chemFound = False
+                  toPrint = ""
+                  toPrint += drug.find("drugbank-id").text + sep
+                  seen.add(drug.find("name").text)
+                  seenids.add(id)
+                  identifiers = [i for i in drug.findAll("external-identifier")]
+                  for i in identifiers:
+                      database = i.find("resource").text
+                      if database != "PubChem Compound":
+                          continue
+                      value = i.find("identifier").text
+                      chemFound = True
+                      toPrint += value + sep
+                  if not chemFound:
+                      toPrint += empty + sep
+                  chemFound = False
+                  for i in identifiers:
+                      database = i.find("resource").text
+                      if database != "PubChem Substance":
+                          continue
+                      value = i.find("identifier").text
+                      chemFound = True
+                      toPrint += value + sep
+                  if not chemFound:
+                      toPrint += empty + sep 
+                  attributes = []
+                  for field in fields:
+                      l = []
+                      if not drug.find(field):
+                          attributes.append(empty)
+                          continue
+                      if drug.find(field).findChildren():
+                          recur(drug.find(field),l)
+                          for i in range(len(l)):
+                              if l[i] == "":
+                                  l[i] = empty
+                          attributes.append("|".join(l).encode('utf-8'))
+                      else:
+                          if drug.find(field).text != "":
+                              genRef = drug.find(field).text
+                              genRef = genRef.split("\n")
+                              attributes.append("|".join(genRef).encode('utf-8'))
+                              #attributes.append(drug.find(field).text.encode('utf-8'))
+                          else:
+                              attributes.append(empty)
+                  toPrint = toPrint.encode('utf-8') + sep.join(attributes)
+                  f.write(toPrint + '\n')
 
