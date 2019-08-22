@@ -48,9 +48,9 @@ Here's a quick look at the new miner dataset:
 -------------------------------
    Modes     |     Nodes
 -------------------------------
-Chemical     |   in progress
+Chemical     |   *in progress*
 Protein      |   22,406,877
-Gene         |   77,911
+Gene         |   106,536
 Function     |   48,969
 Disease      |   25.969
 
