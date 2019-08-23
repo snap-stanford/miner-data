@@ -1,3 +1,7 @@
+#author: farzaan kaiyom (farzaank)
+#description: basic parser for drugbank, printing each nodeid and name
+#updated to work for 2019 dataset
+
 import os
 from bs4 import BeautifulSoup
 import argparse
@@ -10,11 +14,6 @@ outputFile = os.path.join(args.output_dir, "drugbank_parse_test1.tsv")
 soup = BeautifulSoup(open(args.input_file),"xml")
 sep = "\t"
 empty = "NULL"
-fields = ["name", "description", "general-references", "synthesis-reference",
-          "protein-binding", "classification", "salts", "synonyms", "products", "international-brands", "mixtures",
-          "manufacturers", "prices", "categories", "dosages", "atc-codes", "food-interactions", "pathways","reactions",
-          "snp-effects","snp-adverse-drug-reactions"]
-header = ["drugbankID", "pc_Compund", "pc_substance"] + fields;
 
 seen=set()
 
