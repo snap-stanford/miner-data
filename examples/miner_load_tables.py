@@ -1,6 +1,7 @@
 '''
 file : miner_load_tables.py
 author : Agrim Gupta
+edited by : Farzaan Kaiyom
 
 Example to illustrate how to load the miner dataset into a multi-modal network. 
 
@@ -56,7 +57,7 @@ try:
     cmschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     chemical_mode = snap.TTable.LoadSS(cmschema, chemical_mode_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Chemical Mode')
-    snap.LoadModeNetToNet(Graph, "Chemical", chemical_mode, "ChemicalId", snap.TStrV())
+    snap.LoadModeNetToNet(Graph, "Chemical", chemical_mode, "ChemicalId", snap.TStr64V())
 except ConfigParser.NoOptionError: 
     logging.info('Skipping Chemical Mode')
 
@@ -67,7 +68,7 @@ try:
     fmschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     function_mode = snap.TTable.LoadSS(fmschema, function_mode_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Function Mode')
-    snap.LoadModeNetToNet(Graph, "Function", function_mode, "FunctionId", snap.TStrV())
+    snap.LoadModeNetToNet(Graph, "Function", function_mode, "FunctionId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Function Mode')
 
@@ -78,7 +79,7 @@ try:
     gmschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     gene_mode = snap.TTable.LoadSS(gmschema, gene_mode_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Gene Mode')
-    snap.LoadModeNetToNet(Graph, "Gene", gene_mode, "GeneId", snap.TStrV())
+    snap.LoadModeNetToNet(Graph, "Gene", gene_mode, "GeneId", snap.T64StrV())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Gene Mode')
 
@@ -89,7 +90,7 @@ try:
     pmschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     protein_mode = snap.TTable.LoadSS(pmschema, protein_mode_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Protein Mode')
-    snap.LoadModeNetToNet(Graph, "Protein", protein_mode, "ProteinId", snap.TStrV())
+    snap.LoadModeNetToNet(Graph, "Protein", protein_mode, "ProteinId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Protein Mode')
 
@@ -100,7 +101,7 @@ try:
     dmschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     disease_mode = snap.TTable.LoadSS(dmschema, disease_mode_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Disease Mode')
-    snap.LoadModeNetToNet(Graph, "Disease", disease_mode, "DiseaseId", snap.TStrV())
+    snap.LoadModeNetToNet(Graph, "Disease", disease_mode, "DiseaseId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Disease Mode')
 
@@ -114,7 +115,7 @@ try:
     cccschema.Add(snap.TStrTAttrPr("CDstId", snap.atStr))
     chemical_chemical_crossnet = snap.TTable.LoadSS(cccschema, chemical_chemical_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Chemical-Chemical Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Chemical", "Chemical", "Chemical-Chemical", chemical_chemical_crossnet, "CSrcId", "CDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Chemical", "Chemical", "Chemical-Chemical", chemical_chemical_crossnet, "CSrcId", "CDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Chemical-Chemical Cross-Net')
 
@@ -127,7 +128,7 @@ try:
     cgcschema.Add(snap.TStrTAttrPr("GDstId", snap.atStr))
     chemical_gene_crossnet = snap.TTable.LoadSS(cgcschema, chemical_gene_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Chemical-Gene Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Chemical", "Gene", "Chemical-Gene", chemical_gene_crossnet, "CSrcId", "GDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Chemical", "Gene", "Chemical-Gene", chemical_gene_crossnet, "CSrcId", "GDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Chemical-Gene Cross-Net')
 
@@ -140,7 +141,7 @@ try:
     ffcschema.Add(snap.TStrTAttrPr("FDstId", snap.atStr))
     function_function_crossnet = snap.TTable.LoadSS(ffcschema, function_function_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Function-Function Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Function", "Function", "Function-Function", function_function_crossnet, "FSrcId", "FDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Function", "Function", "Function-Function", function_function_crossnet, "FSrcId", "FDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Function-Function Cross-Net')
 
@@ -153,7 +154,7 @@ try:
     gfcschema.Add(snap.TStrTAttrPr("FDstId", snap.atStr))
     gene_function_crossnet = snap.TTable.LoadSS(gfcschema, gene_function_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Gene-Function Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Gene", "Function", "Gene-Function", gene_function_crossnet, "GSrcId", "FDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Gene", "Function", "Gene-Function", gene_function_crossnet, "GSrcId", "FDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Gene-Function Cross-Net')
 
@@ -166,7 +167,7 @@ try:
     gpcschema.Add(snap.TStrTAttrPr("PDstId", snap.atStr))
     gene_protein_crossnet = snap.TTable.LoadSS(gpcschema, gene_protein_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Gene-Protein Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Gene", "Protein", "Gene-Protein", gene_protein_crossnet, "GSrcId", "PDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Gene", "Protein", "Gene-Protein", gene_protein_crossnet, "GSrcId", "PDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Gene-Protein Cross-Net')
 try:
@@ -178,7 +179,7 @@ try:
     ppcschema.Add(snap.TStrTAttrPr("PDstId", snap.atStr))
     protein_protein_crossnet = snap.TTable.LoadSS(ppcschema, protein_protein_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Protein-Protein Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Protein", "Protein", "Protein-Protein", protein_protein_crossnet, "PSrcId", "PDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Protein", "Protein", "Protein-Protein", protein_protein_crossnet, "PSrcId", "PDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Protein-Protein Cross-Net')
 try:
@@ -190,7 +191,7 @@ try:
     ddcschema.Add(snap.TStrTAttrPr("DDstId", snap.atStr))
     disease_disease_crossnet = snap.TTable.LoadSS(ddcschema, disease_disease_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Disease-Disease Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Disease", "Disease", "Disease-Disease", disease_disease_crossnet, "DSrcId", "DDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Disease", "Disease", "Disease-Disease", disease_disease_crossnet, "DSrcId", "DDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Disease-Disease Cross-Net')
 
@@ -203,7 +204,7 @@ try:
     dgcschema.Add(snap.TStrTAttrPr("GDstId", snap.atStr))
     disease_gene_crossnet = snap.TTable.LoadSS(dgcschema, disease_gene_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Disease-Gene Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Disease", "Gene", "Disease-Gene", disease_gene_crossnet, "DSrcId", "GDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Disease", "Gene", "Disease-Gene", disease_gene_crossnet, "DSrcId", "GDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Disease-Gene Cross-Net')
 
@@ -216,7 +217,7 @@ try:
     dfcschema.Add(snap.TStrTAttrPr("FDstId", snap.atStr))
     disease_function_crossnet = snap.TTable.LoadSS(dfcschema, disease_function_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Disease-Function Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Disease", "Function", "Disease-Function", disease_function_crossnet, "DSrcId", "FDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Disease", "Function", "Disease-Function", disease_function_crossnet, "DSrcId", "FDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Disease-Function Cross-Net')
 
@@ -229,7 +230,7 @@ try:
     dccschema.Add(snap.TStrTAttrPr("CDstId", snap.atStr))
     disease_chemical_crossnet = snap.TTable.LoadSS(dccschema, disease_chemical_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Disease-Chemical Cross-Net')
-    snap.LoadCrossNetToNet(Graph, "Disease", "Chemical", "Disease-Chemical", disease_chemical_crossnet, "DSrcId", "CDstId", snap.TStrV())
+    snap.LoadCrossNetToNet(Graph, "Disease", "Chemical", "Disease-Chemical", disease_chemical_crossnet, "DSrcId", "CDstId", snap.TStr64V())
 except ConfigParser.NoOptionError:
     logging.info('Skipping Disease-Chemical Cross-Net')
 
