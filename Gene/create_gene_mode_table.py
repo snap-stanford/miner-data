@@ -1,11 +1,12 @@
 '''
-file: create_snap_mode_table.py
-author: Sheila Ramaswamy(@sramas15)
+file: create_gene_mode_table.py
+edited by: Farzaan Kaiyom(@farzaank)
+based of code by: Sheila Ramaswamy(@sramas15)
 
-Script that creates snap tables for a given mode.
+Script that creates snap tables for genes using GO.
 
 Usage:
-python create_snap_mode_table.py <input_file_path> <mode_name> <dataset_name> <dataset_id>
+python create_gene_mode_table.py <input_file_path> <mode_name> <dataset_name> <dataset_id>
 
 Positional Arguments:
 input_file:              Path to the input file; Input file should be a tsv.
@@ -49,7 +50,10 @@ import os
 
 # Create command line arguments
 parser = argparse.ArgumentParser(description='Create snap node tables; for more detailed description, please see file header.')
-parser.add_argument('input_file', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
+parser.add_argument('input_file1', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
+parser.add_argument('input_file2', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
+parser.add_argument('input_file3', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
+parser.add_argument('input_file4', help='input file name. File should be a tsv, with one mode-specific id per line (unless --node_index specified)')
 parser.add_argument('mode_name', type=str, help='mode name')
 parser.add_argument('dataset_name', type=str, help='name of dataset')
 parser.add_argument('db_id', type=int, help='int id for this dataset')
@@ -63,7 +67,10 @@ args = parser.parse_args()
 
 
 # Process command line arguments, get default path names
-inFNm = args.input_file
+inFNm1 = args.input_file1
+inFNm2 = args.input_file2
+inFNm3 = args.input_file3
+inFNm4 = args.input_file4
 db_id = args.db_id
 mode_name = args.mode_name
 dataset = args.dataset_name
@@ -83,9 +90,102 @@ node_index = args.node_index
 # Read input file, create output files.
 seen = set()
 print 'Starting at snap id: %d' % counter
-with open(inFNm, 'r') as inF:
-  with open(outFNm, 'a') as outF:
-    with open(dbFNm, 'w') as dbF:
+with open(dbFNm, 'w') as dbF:
+  with open(inFNm1, 'r') as inF:
+    with open(outFNm, 'a') as outF:
+      if counter == 0:
+        outF.write('# Full mode table for %s\n' % mode_name)
+        outF.write('# File generated on: %s\n' % utils.get_current_date())
+        outF.write('# snap_nid\tdataset id\n')
+      dbF.write('# Mode table for dataset: %s\n' % dataset)
+      dbF.write('# File generated on: %s\n' % utils.get_current_date())
+      add_schema = True
+      for line in inF:
+        if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
+          continue
+        vals = utils.split_then_strip(line, '\t')
+        if add_schema:
+          attrs_schema = '# snap_nid\tdataset_nid'
+          for i in range(len(vals)):
+            if i != node_index:
+              attrs_schema += '\tC%d' % i
+          dbF.write('%s\n' % attrs_schema)
+          add_schema = False
+        node_id = vals[node_index]
+        if node_id in seen or len(node_id) == 0:
+          continue
+        attrs_str = ''
+        for i in range(len(vals)):
+          if i != node_index:
+            attrs_str += '\t' + vals[i]
+        outF.write('%d\t%d\n' % (counter, db_id))
+        dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
+        seen.add(node_id)
+        counter += 1
+  with open(inFNm2, 'r') as inF:
+    with open(outFNm, 'a') as outF:
+      if counter == 0:
+        outF.write('# Full mode table for %s\n' % mode_name)
+        outF.write('# File generated on: %s\n' % utils.get_current_date())
+        outF.write('# snap_nid\tdataset id\n')
+      dbF.write('# Mode table for dataset: %s\n' % dataset)
+      dbF.write('# File generated on: %s\n' % utils.get_current_date())
+      add_schema = True
+      for line in inF:
+        if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
+          continue
+        vals = utils.split_then_strip(line, '\t')
+        if add_schema:
+          attrs_schema = '# snap_nid\tdataset_nid'
+          for i in range(len(vals)):
+            if i != node_index:
+              attrs_schema += '\tC%d' % i
+          dbF.write('%s\n' % attrs_schema)
+          add_schema = False
+        node_id = vals[node_index]
+        if node_id in seen or len(node_id) == 0:
+          continue
+        attrs_str = ''
+        for i in range(len(vals)):
+          if i != node_index:
+            attrs_str += '\t' + vals[i]
+        outF.write('%d\t%d\n' % (counter, db_id))
+        dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
+        seen.add(node_id)
+        counter += 1
+  with open(inFNm3, 'r') as inF:
+    with open(outFNm, 'a') as outF:
+      if counter == 0:
+        outF.write('# Full mode table for %s\n' % mode_name)
+        outF.write('# File generated on: %s\n' % utils.get_current_date())
+        outF.write('# snap_nid\tdataset id\n')
+      dbF.write('# Mode table for dataset: %s\n' % dataset)
+      dbF.write('# File generated on: %s\n' % utils.get_current_date())
+      add_schema = True
+      for line in inF:
+        if line[0] == '#' or line[0] == '!' or line[0] == '\n': # skip comments
+          continue
+        vals = utils.split_then_strip(line, '\t')
+        if add_schema:
+          attrs_schema = '# snap_nid\tdataset_nid'
+          for i in range(len(vals)):
+            if i != node_index:
+              attrs_schema += '\tC%d' % i
+          dbF.write('%s\n' % attrs_schema)
+          add_schema = False
+        node_id = vals[node_index]
+        if node_id in seen or len(node_id) == 0:
+          continue
+        attrs_str = ''
+        for i in range(len(vals)):
+          if i != node_index:
+            attrs_str += '\t' + vals[i]
+        outF.write('%d\t%d\n' % (counter, db_id))
+        dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
+        seen.add(node_id)
+        counter += 1
+  with open(inFNm4, 'r') as inF:
+    with open(outFNm, 'a') as outF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
