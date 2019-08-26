@@ -61,7 +61,7 @@ Chemical-Chemical  |     *in progress*
 Chemical-Gene      |     *in progress*
 Function-Function  |     249,828
 Gene-Function      |     481,543
-Gene-Protein       |     18,649
+Gene-Protein       |     18,650
 Disease-Disease    |     9,383
 Disease-Gene       |     *33,167*
 Disease-Function   |     2,138,340
