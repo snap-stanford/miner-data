@@ -26,38 +26,64 @@ parser = argparse.ArgumentParser(description='Print basic statistics of the mine
 parser.add_argument('input_file', help='path to the multi-modal network')
 args = parser.parse_args()
 
+#methods to test modes
+def chemStats(Graph):
+  cm = Graph.GetModeNetByName("Chemical")
+  print("Chemical ",cm.GetNodes())
+def protStats(Graph):
+  pm = Graph.GetModeNetByName("Protein")
+  print("Protein ",pm.GetNodes())
+def geneStats(Graph):
+  gm = Graph.GetModeNetByName("Gene")
+  print("Gene ",gm.GetNodes())
+def funcStats(Graph):
+  fm = Graph.GetModeNetByName("Function")
+  print("Function ",fm.GetNodes())
+def disStats(Graph):
+  dm = Graph.GetModeNetByName("Disease")
+  print("Disease ",dm.GetNodes())
+  
+#methods to test nets
+def chemChem(Graph):
+  ccc = Graph.GetCrossNetByName("Chemical-Chemical")
+  print("Chemical-Chemical ",ccc.GetEdges())
+def chemGene(Graph):
+  cgc = Graph.GetCrossNetByName("Chemical-Gene")
+  print("Chemical-Gene ",cgc.GetEdges())
+def funcFunc(Graph):
+  ffc = Graph.GetCrossNetByName("Function-Function")
+  print("Function-Function ",ffc.GetEdges())
+def geneFunc(Graph):  
+  gfc = Graph.GetCrossNetByName("Gene-Function")
+  print("Gene-Function ",gfc.GetEdges())
+def geneProt(Graph):  
+  gpc = Graph.GetCrossNetByName("Gene-Protein")
+  print("Gene-Protein ",gpc.GetEdges())
+def disDis(Graph):
+  ddc = Graph.GetCrossNetByName("Disease-Disease")
+  print("Disease-Disease",ddc.GetEdges())
+def disGene(Graph):
+  dgc = Graph.GetCrossNetByName("Disease-Gene")
+  print("Disease-Gene",dgc.GetEdges())
+def disFunc():
+  dfc = Graph.GetCrossNetByName("Disease-Function")
+  print("Disease-Function ",dfc.GetEdges())
+def disChem():
+  dcc = Graph.GetCrossNetByName("Disease-Chemical")
+  print("Disease-Chemcial ",dcc.GetEdges())
+def protProt():
+  ppc = Graph.GetCrossNetByName("Protein-Protein")
+  print("Protein-Protein ",ppc.GetEdges())
+  
 print("Printing Modes")
 FIn = snap.TFIn(args.input_file)
 Graph = snap.TMMNet.Load(FIn)
-cm = Graph.GetModeNetByName("Chemical")
-print("Chemical ",cm.GetNodes())
-pm = Graph.GetModeNetByName("Protein")
-print("Protein ",pm.GetNodes())
-gm = Graph.GetModeNetByName("Gene")
-print("Gene ",gm.GetNodes())
-fm = Graph.GetModeNetByName("Function")
-print("Function ",fm.GetNodes())
-dm = Graph.GetModeNetByName("Disease")
-print("Disease ",dm.GetNodes())
+geneStats(Graph)
+protStats(Graph)
 
 print("Printing CrossNets")
-ccc = Graph.GetCrossNetByName("Chemical-Chemical")
-print("Chemical-Chemical ",ccc.GetEdges())
-cgc = Graph.GetCrossNetByName("Chemical-Gene")
-print("Chemical-Gene ",cgc.GetEdges())
-ffc = Graph.GetCrossNetByName("Function-Function")
-print("Function-Function ",ffc.GetEdges())
-gfc = Graph.GetCrossNetByName("Gene-Function")
-print("Gene-Function ",gfc.GetEdges())
-gpc = Graph.GetCrossNetByName("Gene-Protein")
-print("Gene-Protein ",gpc.GetEdges())
-ddc = Graph.GetCrossNetByName("Disease-Disease")
-print("Disease-Disease",ddc.GetEdges())
-dgc = Graph.GetCrossNetByName("Disease-Gene")
-print("Disease-Gene",dgc.GetEdges())
-dfc = Graph.GetCrossNetByName("Disease-Function")
-print("Disease-Function ",dfc.GetEdges())
-dcc = Graph.GetCrossNetByName("Disease-Chemical")
-print("Disease-Chemcial ",dcc.GetEdges())
-ppc = Graph.GetCrossNetByName("Protein-Protein")
-print("Protein-Protein ",ppc.GetEdges())
+geneProt(Graph)
+
+
+
+
