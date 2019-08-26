@@ -91,8 +91,8 @@ node_index = args.node_index
 seen = set()
 print 'Starting at snap id: %d' % counter
 with open(dbFNm, 'w') as dbF:
-  with open(inFNm1, 'r') as inF:
-    with open(outFNm, 'a') as outF:
+  with open(outFNm, 'a') as outF:
+    with open(inFNm1, 'r') as inF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
@@ -122,8 +122,7 @@ with open(dbFNm, 'w') as dbF:
         dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
         seen.add(node_id)
         counter += 1
-  with open(inFNm2, 'r') as inF:
-    with open(outFNm, 'a') as outF:
+    with open(inFNm2, 'r') as inF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
@@ -153,8 +152,7 @@ with open(dbFNm, 'w') as dbF:
         dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
         seen.add(node_id)
         counter += 1
-  with open(inFNm3, 'r') as inF:
-    with open(outFNm, 'a') as outF:
+    with open(inFNm3, 'r') as inF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
@@ -184,8 +182,7 @@ with open(dbFNm, 'w') as dbF:
         dbF.write('%d\t%s%s\n' % (counter, node_id, attrs_str))
         seen.add(node_id)
         counter += 1
-  with open(inFNm4, 'r') as inF:
-    with open(outFNm, 'a') as outF:
+    with open(inFNm4, 'r') as inF:
       if counter == 0:
         outF.write('# Full mode table for %s\n' % mode_name)
         outF.write('# File generated on: %s\n' % utils.get_current_date())
