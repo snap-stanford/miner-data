@@ -48,7 +48,7 @@ Here's a quick look at the new miner dataset:
 -------------------------------
    Modes     |     Nodes
 -------------------------------
-Chemical     |   *in progress*
+Chemical     |   15,464
 Protein      |   22,406,877
 Gene         |   106,536
 Function     |   48,969
@@ -73,7 +73,7 @@ The old miner-dataset at a glance:
 -------------------------------
    Modes     |     Nodes
 -------------------------------
-Chemical     |     22,486 
+Chemical     |     11,367 
 Protein      |  8,254,694
 Gene         |    104,004
 Function     |     46,564
