@@ -63,11 +63,10 @@ Function-Function  |     249,828
 Gene-Function      |     481,543
 Gene-Protein       |     18,650
 Disease-Disease    |     9,383
-Disease-Gene       |     *33,167*
+Disease-Gene       |     50,022,282
 Disease-Function   |     2,138,340
 Disease-Chemical   |     *in progress*
 Protein-Protein    |     2,147,483,643
-* Disease-Gene number may be incorrect
 
 The old miner-dataset at a glance:
 -------------------------------
