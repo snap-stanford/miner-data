@@ -27,4 +27,4 @@ with open(args.input_file, 'r') as input, open(masterTable, 'w') as master,open(
             snapId = snapIdPrefix + str(idNum)
             idNum += 1
             master.write(snapId + sep + id + '\n')
-            drugbankTable.write(snapId + sep + id + name '\n')
+            drugbankTable.write(snapId + sep + id + name + '\n')
