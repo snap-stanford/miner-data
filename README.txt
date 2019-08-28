@@ -52,7 +52,7 @@ Chemical     |   15,464
 Protein      |   22,406,877
 Gene         |   106,536
 Function     |   48,969
-Disease      |   25.969
+Disease      |   25,969
 
 --------------------------------------
     Cross-Nets     |     Edges
@@ -63,7 +63,7 @@ Function-Function  |     249,828
 Gene-Function      |     481,543
 Gene-Protein       |     18,650
 Disease-Disease    |     9,383
-Disease-Gene       |     50,022,282
+Disease-Gene       |     64,076,042
 Disease-Function   |     2,138,340
 Disease-Chemical   |     *in progress*
 Protein-Protein    |     2,147,483,643
