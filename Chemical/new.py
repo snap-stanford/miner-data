@@ -1,3 +1,8 @@
+import itertools
+import os
+from datetime import datetime
+import argparse
+
 sep = "\t"
 empty = "NULL"
 snapIdPrefix = ""
