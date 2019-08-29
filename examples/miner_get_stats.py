@@ -1,6 +1,7 @@
 '''
 file   : miner_get_stats.py
 author : Agrim Gupta
+updated by Farzaan Kaiyom with methods and new data
 
 Script to print basic statistics of the miner dataset.
 
@@ -65,13 +66,13 @@ def disDis(Graph):
 def disGene(Graph):
   dgc = Graph.GetCrossNetByName("Disease-Gene")
   print("Disease-Gene",dgc.GetEdges())
-def disFunc():
+def disFunc(Graph):
   dfc = Graph.GetCrossNetByName("Disease-Function")
   print("Disease-Function ",dfc.GetEdges())
-def disChem():
+def disChem(Graph):
   dcc = Graph.GetCrossNetByName("Disease-Chemical")
   print("Disease-Chemcial ",dcc.GetEdges())
-def protProt():
+def protProt(Graph):
   ppc = Graph.GetCrossNetByName("Protein-Protein")
   print("Protein-Protein ",ppc.GetEdges())
   
@@ -80,9 +81,22 @@ FIn = snap.TFIn(args.input_file)
 Graph = snap.TMMNet.Load(FIn)
 geneStats(Graph)
 protStats(Graph)
+chemStats(Graph)
+funcStats(Graph)
+disStats(Graph)
 
 print("Printing CrossNets")
 geneProt(Graph)
+chemChem(Graph)
+funcFunc(Graph)
+chemGene(Graph)
+geneFunc(Graph)
+geneProt(Graph)
+disDis(Graph)
+disGene(Graph)
+disFunc(Graph)
+disChem(Graph)
+#protProt(Graph)
 
 
 
