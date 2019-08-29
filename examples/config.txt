@@ -1,19 +1,18 @@
 [Modes]
-Chemical = /dfs/ilfs2/0/MINER-BIO/types/Chemical/20160418/snap-tables/miner-chemical-20160525.tsv
-Protein = /dfs/ilfs2/0/MINER-BIO/types/Protein/20160418/snap-tables/miner-proteins-20160520.tsv
-Function = /dfs/ilfs2/0/MINER-BIO/types/Function/20160418/snap-tables/miner-function-20160518.tsv 
-Gene = /dfs/ilfs2/0/MINER-BIO/types/Gene/20160418/snap-tables/miner-gene-20160518.tsv
-Disease = /dfs/ilfs2/0/MINER-BIO/types/Disease/20160418/snap-tables/miner-disease-20160525.tsv
+Chemical = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Chemical/miner-chemical-20190828.tsv
+Protein = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Protein/miner-proteins-20190816.tsv
+Function = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Function/miner-function-20190807.tsv 
+Gene = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Gene/miner-gene-20190826.tsv
+Disease = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Disease/miner-disease-20190813.tsv
 
 [Cross-Net]
-Chemical-Chemical = /dfs/ilfs2/0/MINER-BIO/types/Chemical-Chemical/20160418/snap-tables/miner-chemical-chemical-20160525.tsv
-Chemical-Gene = /dfs/ilfs2/0/MINER-BIO/types/Chemical-Gene/20160418/snap-tables/miner-chemical-gene-20160525.tsv
-Function-Function = /dfs/ilfs2/0/MINER-BIO/types/Function-Function/20160418/snap-tables/miner-function-function-20160518.tsv
-Gene-Protein = /dfs/ilfs2/0/MINER-BIO/types/Gene-Protein/20160418/snap-tables/miner-gene-protein-20160528.tsv
-Gene-Function = /dfs/ilfs2/0/MINER-BIO/types/Gene-Function/20160418/snap-tables/miner-gene-function-20160518.tsv
-Protein-Protein = /dfs/ilfs2/0/MINER-BIO/types/Chemical/miner-protein-protein-20160607_sub.tsv
-Disease-Disease = /dfs/ilfs2/0/MINER-BIO/types/Disease-Disease/20160418/snap-tables/miner-disease-disease-20160525.tsv
-Disease-Gene = /dfs/ilfs2/0/MINER-BIO/types/Disease-Gene/20160418/snap-tables/miner-disease-gene-20160525.tsv
-Disease-Function = /dfs/ilfs2/0/MINER-BIO/types/Disease-Function/20160418/snap-tables/miner-disease-function-20160525.tsv
-Disease-Chemical = /dfs/ilfs2/0/MINER-BIO/types/Disease-Chemical/20160418/snap-tables/miner-disease-chemical-20160525.tsv
-
+Chemical-Chemical = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Chemical-Chemical/miner-chemical-chemical-20190828.tsv
+Chemical-Gene = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Chemical-Gene/miner-chemical-gene-20190828.tsv
+Function-Function = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Function-Function/miner-function-function-20190807.tsv
+Gene-Protein = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Gene-Protein/miner-gene-protein-20190819.tsv
+Gene-Function = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Gene-Function/miner-gene-function-20190815.tsv
+Protein-Protein = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Protein-Protein/miner-protein-protein-20190819.tsv
+Disease-Disease = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Disease-Disease/miner-disease-disease-20190813.tsv
+Disease-Gene = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Disease-Gene/miner-disease-gene-20190816.tsv
+Disease-Function = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Disease-Function/miner-disease-function-20190814.tsv
+Disease-Chemical = /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/output/Disease-Chemical/miner-disease-chemical-20190828.tsv
