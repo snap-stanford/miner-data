@@ -65,7 +65,7 @@ Gene-Protein       |     18,650
 Disease-Disease    |     9,383
 Disease-Gene       |     64,076,042
 Disease-Function   |     2,138,340
-Disease-Chemical   |     *in progress*
+Disease-Chemical   |     2,643,750
 Protein-Protein    |     2,147,483,643
 
 The old miner-dataset at a glance:
