@@ -48,7 +48,7 @@ Here's a quick look at the new miner dataset:
 -------------------------------
    Modes     |     Nodes
 -------------------------------
-Chemical     |   15,464
+Chemical     |   13339
 Protein      |   22,406,877
 Gene         |   106,536
 Function     |   48,969
@@ -58,7 +58,7 @@ Disease      |   25,969
     Cross-Nets     |     Edges
 --------------------------------------
 Chemical-Chemical  |     2,712,183
-Chemical-Gene      |     25,107
+Chemical-Gene      |     20,644
 Function-Function  |     249,828
 Gene-Function      |     481,543
 Gene-Protein       |     18,650
