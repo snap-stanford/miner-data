@@ -58,7 +58,7 @@ Disease      |   25,969
     Cross-Nets     |     Edges
 --------------------------------------
 Chemical-Chemical  |     *in progress*
-Chemical-Gene      |     *in progress*
+Chemical-Gene      |     25,107
 Function-Function  |     249,828
 Gene-Function      |     481,543
 Gene-Protein       |     18,650
