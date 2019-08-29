@@ -48,6 +48,9 @@ Only edges with confidence level greater than 200 are used. When SNAP supports
 64 bit make the following change in config file:
 Protein-Protein = /dfs/ilfs2/0/MINER-BIO/types/Protein-Protein/20160418/snap-tables/miner-protein-protein-20160607.tsv
 
+Error after using 64 bit: RuntimeError: Message: TVec::Resize: std::exception, Length:536870912, Capacity:1073741824, New capacity:-1, Type:4TVecI11THashKeyDatI6TInt64S1_iExE [Program failed to allocate more memory. Solution-1: Get a bigger machine and a 64-bit compiler.]
+
+
 ---------------------------
 file   : miner_get_stats.py
 ---------------------------
