@@ -1,4 +1,4 @@
-Scripts used to extract nodes and edges from MINER data.
+Scripts used to extract nodes and edges from MINER data in 2016 and later in 2019
 
 
 The Utils directory consists of general scripts that can be used to process multiple datasets.
@@ -42,13 +42,16 @@ CrossNets
 - Disease-Function
 	- CTD (http://ctdbase.org)
 
-Datasets can be found at /dfs/scratch2/MINER-BIO/data-miner. 
+New Datasets can be found at /dfs/scratch2/MINER-BIO/data-miner-201908. 
+Old Datasets can be found at /dfs/scratch2/MINER-BIO/data-miner. 
+
+The latest graph can be found at /dfs/scratch2/MINER-BIO/work-data-miner-v2/farzaan/snap
 
 Here's a quick look at the new miner dataset:
 -------------------------------
    Modes     |     Nodes
 -------------------------------
-Chemical     |   13339
+Chemical     |   13,339
 Protein      |   22,406,877
 Gene         |   106,536
 Function     |   48,969
