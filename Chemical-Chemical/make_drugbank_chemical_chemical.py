@@ -70,7 +70,7 @@ with open(edgeFile, 'r') as f, open(masterTable, 'w') as master, open(subTable, 
         drugsDone[line[0]].append(line[1])
         snapId = snapIdPrefix + str(idNum)
         idNum += 1
-        master.write(snapId + sep + "0" + sep + drugbankSnap[line[0]] + sep + drugbankSnap[line[1]] + '\n')
-        sub.write(snapId + sep + line[0] + sep + line[1] + '\n')
+        master.write(snapId + sep + "0" + sep + drugbankSnap[line[0]] + sep + drugbankSnap[line[1]] + sep + line[2] + '\n')
+        sub.write(snapId + sep + line[0] + sep + line[1] + sep + line[2] + '\n')
 
 

@@ -46,6 +46,5 @@ with open(outputFile, 'w') as f:
         if not interactions:
             continue
         for i in interactions:
-            toPrint = drugName + sep + i.find("drugbank-id").text
+            toPrint = drugName + sep + i.find("drugbank-id").text + sep + i.find("description").text
             f.write(toPrint.encode('utf-8') + '\n')
-
