@@ -113,6 +113,7 @@ try:
     cccschema.Add(snap.TStrTAttrPr("datasetId", snap.atStr))
     cccschema.Add(snap.TStrTAttrPr("CSrcId", snap.atStr))
     cccschema.Add(snap.TStrTAttrPr("CDstId", snap.atStr))
+    cccschema.Add(snap.TStrTAttrPr("desc", snap.atStr))
     chemical_chemical_crossnet = snap.TTable.LoadSS(cccschema, chemical_chemical_crossnet_file, context, "\t", snap.TBool(False))
     logging.info('Done loading Chemical-Chemical Cross-Net')
     snap.LoadCrossNetToNet(Graph, "Chemical", "Chemical", "Chemical-Chemical", chemical_chemical_crossnet, "CSrcId", "CDstId", snap.TStr64V())
