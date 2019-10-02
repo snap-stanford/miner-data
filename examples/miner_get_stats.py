@@ -1,6 +1,6 @@
 '''
 file   : miner_get_stats.py
-author : Agrim Gupta
+authors : Agrim Gupta
 updated by Farzaan Kaiyom with methods and new data
 
 Script to print basic statistics of the miner dataset.
@@ -79,23 +79,68 @@ def protProt(Graph):
 print("Printing Modes")
 FIn = snap.TFIn(args.input_file)
 Graph = snap.TMMNet.Load(FIn)
-geneStats(Graph)
-protStats(Graph)
-chemStats(Graph)
-funcStats(Graph)
-disStats(Graph)
+try: 
+  geneStats(Graph)
+except:
+  print("Skipped genes")
+try:
+  protStats(Graph)
+except:
+  print("Skipped proteins")
+try:
+  chemStats(Graph)
+except:
+  print("Skipped chem")
+try:
+  funcStats(Graph)
+except:
+  print("Skipped func")
+try:
+  disStats(Graph)
+except:
+  print("Skipped dis")
 
 print("Printing CrossNets")
-geneProt(Graph)
-chemChem(Graph)
-funcFunc(Graph)
-chemGene(Graph)
-geneFunc(Graph)
-geneProt(Graph)
-disDis(Graph)
-disGene(Graph)
-disFunc(Graph)
-disChem(Graph)
+try:
+  geneProt(Graph)
+except:
+  print("Skipped geneProt")
+try:
+  chemChem(Graph)
+except:
+  print("Skipped chemChem")
+try:
+  funcFunc(Graph)
+except:
+  print("Skipped funcFunc")
+try:
+  chemGene(Graph)
+except:
+  print("Skipped chemGene")
+try:
+  geneFunc(Graph)
+except:
+  print("Skipped geneFunc")
+try:
+  geneProt(Graph)
+except:
+  print("Skipped geneProt")
+try:
+  disDis(Graph)
+except:
+  print("Skipped disDis")
+try:
+  disGene(Graph)
+except:
+  print("Skipped disGene")
+try:
+  disFunc(Graph)
+except:
+  print("Skipped disFunc")
+try:
+  disChem(Graph)
+except:
+  print("Skipped disChem")
 #protProt(Graph)
 
 
