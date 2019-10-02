@@ -30,16 +30,16 @@ args = parser.parse_args()
 def modeStats(Graph,name):
   try:
     gp = Graph.GetModeNetByName(name)
-    print(name,gp.GetNodes())
+    print(name,": ",gp.GetNodes())
   except:
-    print("Skipping ",name)
+    print(name," skipped")
 
 def crossStats(Graph,name):
   try:
     gp = Graph.GetCrossNetByName(name)
-    print(name,gp.getEdges())
+    print(name,": ",gp.getEdges())
   except:
-    print("Skipping ",name)
+    print(name," skipped")
   
 print("Printing Modes")
 FIn = snap.TFIn(args.input_file)
