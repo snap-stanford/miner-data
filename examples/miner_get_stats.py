@@ -1,7 +1,6 @@
 '''
 file   : miner_get_stats.py
-authors : Agrim Gupta
-updated by Farzaan Kaiyom with methods and new data
+authors : Farzaan Kaiyom, Agrim Gupta
 
 Script to print basic statistics of the miner dataset.
 
@@ -28,121 +27,39 @@ parser.add_argument('input_file', help='path to the multi-modal network')
 args = parser.parse_args()
 
 #methods to test modes
-def chemStats(Graph):
-  cm = Graph.GetModeNetByName("Chemical")
-  print("Chemical ",cm.GetNodes())
-def protStats(Graph):
-  pm = Graph.GetModeNetByName("Protein")
-  print("Protein ",pm.GetNodes())
-def geneStats(Graph):
-  gm = Graph.GetModeNetByName("Gene")
-  print("Gene ",gm.GetNodes())
-def funcStats(Graph):
-  fm = Graph.GetModeNetByName("Function")
-  print("Function ",fm.GetNodes())
-def disStats(Graph):
-  dm = Graph.GetModeNetByName("Disease")
-  print("Disease ",dm.GetNodes())
-  
-#methods to test nets
-def chemChem(Graph):
-  ccc = Graph.GetCrossNetByName("Chemical-Chemical")
-  print("Chemical-Chemical ",ccc.GetEdges())
-def chemGene(Graph):
-  cgc = Graph.GetCrossNetByName("Chemical-Gene")
-  print("Chemical-Gene ",cgc.GetEdges())
-def funcFunc(Graph):
-  ffc = Graph.GetCrossNetByName("Function-Function")
-  print("Function-Function ",ffc.GetEdges())
-def geneFunc(Graph):  
-  gfc = Graph.GetCrossNetByName("Gene-Function")
-  print("Gene-Function ",gfc.GetEdges())
-def geneProt(Graph):  
-  gpc = Graph.GetCrossNetByName("Gene-Protein")
-  print("Gene-Protein ",gpc.GetEdges())
-def disDis(Graph):
-  ddc = Graph.GetCrossNetByName("Disease-Disease")
-  print("Disease-Disease",ddc.GetEdges())
-def disGene(Graph):
-  dgc = Graph.GetCrossNetByName("Disease-Gene")
-  print("Disease-Gene",dgc.GetEdges())
-def disFunc(Graph):
-  dfc = Graph.GetCrossNetByName("Disease-Function")
-  print("Disease-Function ",dfc.GetEdges())
-def disChem(Graph):
-  dcc = Graph.GetCrossNetByName("Disease-Chemical")
-  print("Disease-Chemcial ",dcc.GetEdges())
-def protProt(Graph):
-  ppc = Graph.GetCrossNetByName("Protein-Protein")
-  print("Protein-Protein ",ppc.GetEdges())
+def modeStats(Graph,name):
+  try:
+    gp = Graph.GetModeNetByName(name)
+    print(name,gp.GetNodes())
+  except:
+    print("Skipping ",name)
+
+def crossStats(Graph,name):
+  try:
+    gp = Graph.GetCrossNetByName(name)
+    print(name,gp.getEdges())
+  except:
+    print("Skipping ",name)
   
 print("Printing Modes")
 FIn = snap.TFIn(args.input_file)
 Graph = snap.TMMNet.Load(FIn)
-try: 
-  geneStats(Graph)
-except:
-  print("Skipped genes")
-try:
-  protStats(Graph)
-except:
-  print("Skipped proteins")
-try:
-  chemStats(Graph)
-except:
-  print("Skipped chem")
-try:
-  funcStats(Graph)
-except:
-  print("Skipped func")
-try:
-  disStats(Graph)
-except:
-  print("Skipped dis")
+
+modeStats(Graph,"Chemical")
+modeStats(Graph,"Protein")
+modeStats(Graph,"Gene")
+modeStats(Graph,"Function")
+modeStats(Graph,"Disease")
 
 print("Printing CrossNets")
-try:
-  geneProt(Graph)
-except:
-  print("Skipped geneProt")
-try:
-  chemChem(Graph)
-except:
-  print("Skipped chemChem")
-try:
-  funcFunc(Graph)
-except:
-  print("Skipped funcFunc")
-try:
-  chemGene(Graph)
-except:
-  print("Skipped chemGene")
-try:
-  geneFunc(Graph)
-except:
-  print("Skipped geneFunc")
-try:
-  geneProt(Graph)
-except:
-  print("Skipped geneProt")
-try:
-  disDis(Graph)
-except:
-  print("Skipped disDis")
-try:
-  disGene(Graph)
-except:
-  print("Skipped disGene")
-try:
-  disFunc(Graph)
-except:
-  print("Skipped disFunc")
-try:
-  disChem(Graph)
-except:
-  print("Skipped disChem")
-#protProt(Graph)
 
-
-
-
+crossStats(Graph,"Chemical-Chemical")
+crossStats(Graph,"Chemical-Gene")
+crossStats(Graph,"Function-Function")
+crossStats(Graph,"Gene-Function")
+crossStats(Graph,"Gene-Protein")
+crossStats(Graph,"Disease-Disease")
+crossStats(Graph,"Disease-Gene")
+crossStats(Graph,"Disease-Function")
+crossStats(Graph,"Disease-Chemical")
+crossStats(Graph,"Protein-Protein")
