@@ -66,7 +66,7 @@ with open(args.input_file, 'r') as inF:
 								(attr, edge_id) = new_line.split('!')[0].split('GO:')
 								attr = attr.strip()
 								dst_id = 'GO:' + edge_id.strip()
-							outF.write('%s\t%s\t%s\n' % (currNode, dst_id, attr))
+							outF.write('%s\t%s\t%s\n' % (currNode, dst_id, term))
 							break
 
 
