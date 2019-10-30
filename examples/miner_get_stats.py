@@ -37,7 +37,7 @@ def modeStats(Graph,name):
 def crossStats(Graph,name):
   try:
     gp = Graph.GetCrossNetByName(name)
-    print(name,": ",gp.getEdges())
+    print(name,": ",gp.GetEdges()) # use getEdges for older versions of SNAP.py
   except:
     print(name," skipped")
   
