@@ -35,14 +35,21 @@ def load_disease_functions_ctd(ctd_dir):
     f2 = open(os.path.join(ctd_dir, 'CTD_Phenotype-Disease_cellular_component_associations.tsv'), 'r')
     f3 = open(os.path.join(ctd_dir, 'CTD_Phenotype-Disease_molecular_function_associations.tsv'), 'r')
     global_list = []
+    linktype = ""
     for f in [f1, f2, f3]:
+        if f==f1:
+            linktype = "biological"
+        elif f==f2:
+            linktype = "cellular"
+        else:
+            linktype = "molecular"
         for line in f:
             if line.startswith('#'):
                 continue
             sp_line = line.strip('\n').split('\t')
             disease_id = sp_line[3]
             go_id = sp_line[1]
-            global_list.append((disease_id, go_id))
+            global_list.append((disease_id, go_id, linktype))
     return global_list
 
 parser = argparse.ArgumentParser(description='Parse CTD to find disease-function links.')
@@ -56,6 +63,6 @@ disease_func_list = load_disease_functions_ctd(args.input_dir)
 
 with open(output_fname, 'w') as out_f:
     out_f.write('#Disease Function links from CTD.\n')
-    for (disease_id, go_id) in disease_func_list:
-        out_f.write('\t'.join([disease_id, go_id]))
+    for (disease_id, go_id,linktype) in disease_func_list:
+        out_f.write('\t'.join([disease_id, go_id,linktype]))
         out_f.write('\n')
