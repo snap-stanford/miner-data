@@ -62,7 +62,7 @@ def parse_ctd_chem_diseases(ctd_dir):
             db_id = chem_to_db_dict[chem_id][0]
             disease_id = sp_line[4]
             inference_score = sp_line[7]
-            if inference_score = "":
+            if inference_score == "":
                 inference_score = "0"
             disease_chem_list.append((disease_id, db_id,inference_score))
 
