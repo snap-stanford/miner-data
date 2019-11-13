@@ -65,8 +65,11 @@ def parse_ctd_gene_diseases(ctd_dir):
             if ncbi_id not in ncbi_to_uniprot_dict:
                 continue
             disease_id = sp_line[3]
+            iscore = sp_line[6]
+            if iscore=="":
+                iscore = 0
             for uniprot_id in ncbi_to_uniprot_dict[ncbi_id]:
-                yield (disease_id, uniprot_id)
+                yield (disease_id, uniprot_id,iscore)
      
 
 parser = argparse.ArgumentParser(description='Parse CTD to find disease-gene links.')
@@ -79,6 +82,6 @@ output_fname = os.path.join(args.output_dir, "ctd_disease_gene_parsed.tsv")
 
 with open(output_fname, 'w') as out_f:
     out_f.write('#Disease Gene links from CTD.\n')
-    for (disease_id, uni_id) in parse_ctd_gene_diseases(args.input_dir):
-        out_f.write('\t'.join([disease_id, uni_id]))
+    for (disease_id, uni_id,iscore) in parse_ctd_gene_diseases(args.input_dir):
+        out_f.write('\t'.join([disease_id, uni_id,iscore]))
         out_f.write('\n')
