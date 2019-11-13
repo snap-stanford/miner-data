@@ -61,7 +61,10 @@ def parse_ctd_chem_diseases(ctd_dir):
                 continue
             db_id = chem_to_db_dict[chem_id][0]
             disease_id = sp_line[4]
-            disease_chem_list.append((disease_id, db_id))
+            inference_score = sp_line[7]
+            if inference_score = "":
+                inference_score = "0"
+            disease_chem_list.append((disease_id, db_id,inference_score))
 
     return disease_chem_list
      
@@ -77,6 +80,6 @@ disease_chem_list = parse_ctd_chem_diseases(args.input_dir)
 
 with open(output_fname, 'w') as out_f:
     out_f.write('#Disease Chemical links from CTD.\n')
-    for (disease_id, db_id) in disease_chem_list:
-        out_f.write('\t'.join([disease_id, db_id]))
+    for (disease_id, db_id, iscore) in disease_chem_list:
+        out_f.write('\t'.join([disease_id, db_id,iscore]))
         out_f.write('\n')
